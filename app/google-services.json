@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "312582019829",
+    "firebase_url": "https://everlasting-story.firebaseio.com",
+    "project_id": "everlasting-story",
+    "storage_bucket": "everlasting-story.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312582019829:android:1b83ae161b963c2a",
+        "android_client_info": {
+          "package_name": "com.example.tyolani.everlastingstorypro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312582019829-pka6nt9c66po5s1ao42cl5ru4muouckm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tyolani.everlastingstorypro",
+            "certificate_hash": "a7a3687d9bb488da2662b52f500d15df964fa652"
+          }
+        },
+        {
+          "client_id": "312582019829-6s2om08p71o45v7vgb3taufj2h19mjbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGmouHa7qHaIJXtbyYM0AWuSXQyDZoUbo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312582019829-6s2om08p71o45v7vgb3taufj2h19mjbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
