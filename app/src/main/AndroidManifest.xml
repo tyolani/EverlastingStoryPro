@@ -16,8 +16,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".BookView" />
+        <activity android:name=".BookView">
+
+        </activity>
+
         <activity android:name=".OverviewActivity">
 
         </activity>
