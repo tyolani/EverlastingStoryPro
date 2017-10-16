@@ -14,14 +14,14 @@ public class Book {
     private int mPageCount;
     private String mOverview;
     private String mTitle;
-    private ArrayList<Chapter> mChapters; //TODO: Should take Chapter objects.
+    private ArrayList<Chapter> mChapters;
 
     public Book(String overview, String title) {
         this.mOverview = overview;
         this.mTitle = title;
     }
     public Book(String title){
-        mTitle = title;
+        this.mTitle = title;
     }
     public Book(){
         // Just an empty book
@@ -42,6 +42,7 @@ public class Book {
             return false;
         }
     }
+
     public boolean createNewChapter(String name, String initialText, String author){
         if(getNumberOfOpenChapters() <= 3){
             Contribution tempContribution = new Contribution(initialText, author);
@@ -52,6 +53,7 @@ public class Book {
             return false;
         }
     }
+
     public boolean createNewChapter(String name, Image initialImage, String author){
         if(getNumberOfOpenChapters() <= 3){
             Contribution tempContribution = new Contribution(initialImage, author);
@@ -62,6 +64,7 @@ public class Book {
             return false;
         }
     }
+
     public int getChapterIndex(String chapterName){
         for(int i = 0; i < mChapters.size(); i++){
             if(mChapters.get(i).getName().equals(chapterName)){
@@ -86,6 +89,10 @@ public class Book {
             }
         }
         return totalOpen;
+    }
+
+    public ArrayList<Chapter> getChapters() {
+        return this.mChapters;
     }
 
 

@@ -19,24 +19,24 @@ import java.util.ArrayList;
 public class OverviewAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<String> data;
+    ArrayList<Chapter> chapters;
     private static LayoutInflater inflater = null;
 
-    public OverviewAdapter(Context context, ArrayList<String> data) {
+    public OverviewAdapter(Context context, ArrayList<Chapter> chapters) {
         this.context = context;
-        this.data = data;
+        this.chapters = chapters;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        return chapters.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return chapters.get(position);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class OverviewAdapter extends BaseAdapter {
         TextView chapter_id = vi.findViewById(R.id.row_chapter_closed_id);
         TextView chapter_name = vi.findViewById(R.id.row_chapter_closed_name);
 
-        String chapter = data.get(position);
+        String chapter = chapters.get(position).getName();
 
         chapter_id.setText(String.valueOf(position + 1));
         chapter_name.setText(chapter);
