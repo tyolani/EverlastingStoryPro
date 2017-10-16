@@ -47,8 +47,13 @@ public class OverviewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        if (vi == null)
-            vi = inflater.inflate(R.layout.row_chapter_closed, null);
+        if (vi == null) {
+            if (chapters.get(position).isFinished()) {
+                vi = inflater.inflate(R.layout.row_chapter_closed, null);
+            } else {
+                vi = inflater.inflate(R.layout.row_chapter_open, null);
+            }
+        }
         TextView chapter_id = vi.findViewById(R.id.row_chapter_closed_id);
         TextView chapter_name = vi.findViewById(R.id.row_chapter_closed_name);
 

@@ -19,6 +19,7 @@ public class Book {
     public Book(String overview, String title) {
         this.mOverview = overview;
         this.mTitle = title;
+        newContributor();
     }
     public Book(String title){
         this.mTitle = title;
@@ -74,12 +75,20 @@ public class Book {
         return -1;
     }
     //Returns the number of pages of all chapters combined
-    public int getmPageCount(){
+    public int getPageCount(){
         int totalPages = 0;
         for(int i = 0; i < mChapters.size(); i++){
             totalPages += mChapters.get(i).getPageCount();
         }
         return totalPages;
+    }
+    public int getAuthorCount() {
+        int totalAuthors = 0;
+
+        for (Chapter c : mChapters) {
+            totalAuthors += c.getNumberOfAuthors();
+        }
+        return totalAuthors;
     }
     public int getNumberOfOpenChapters(){
         int totalOpen = 0;
@@ -89,6 +98,12 @@ public class Book {
             }
         }
         return totalOpen;
+    }
+    public String getBookOverview() {
+        return this.mOverview;
+    }
+    public String getBookTitle() {
+        return this.mTitle;
     }
 
     public ArrayList<Chapter> getChapters() {
