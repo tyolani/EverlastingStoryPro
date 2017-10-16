@@ -20,6 +20,7 @@ public class Chapter {
     //--------------------------------- Contructors ---------------------------------
     //
     public Chapter(Contribution cont, String newname){
+        contributions = new ArrayList<Contribution>();
         contributions.add(cont);
         name = newname;
         isFinished = false;
