@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">EverlastingStory</string>
+    <string name="overview_pages">Pages:</string>
+    <string name="overview_table_of_contents">Table of Contents</string>
+    <string name="overview_add_chapter">Add chapter</string>
+    <string name="overview_row_chapter">Chapter</string>
+
+    <string name="overview_contributors_description">Image for contributor count</string>
+    <string name="overview_chapter_row_lock_description">Icon indicating that chapter is locked for further contribution</string>
+
+    <string name="overview_test_about">A murder in Paris\' Louvre Museum and cryptic clues in some of Leonardo da Vinci\'s most famous paintings lead to the discovery of a religious mystery. For 2,000 years a secret society closely guards information that -- should it come to light -- could rock the very foundations of Christianity.</string>
+    <string name="overview_test_contributor_count">58</string>
+    <string name="overview_test_title">Pocahontas</string>
+    <string name="overview_test_page_count">111</string>
+    <string name="overview_test_row_id">1</string>
+    <string name="overview_test_row_name">Jungle boogie</string>
 </resources>
