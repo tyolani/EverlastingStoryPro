@@ -29,7 +29,8 @@ public class TestDatabase extends AppCompatActivity {
         // Write to the database
         //mDatabase.child("Name").setValue("Hardcoded key and value");
 
-        //mDatabase.push().setValue("RandomValue with RandomKey");//use push method for getting  a random key
+        //DatabaseReference myDB = FirebaseDatabase.getInstance().getReference();
+        //myDB.push().setValue("RandomValue with RandomKey Something");//use push method for getting  a random key
 
 
         //Write object to database
