@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tyolani.everlastingstorypro.HomeActivity"
+    android:background="@drawable/main_gradient">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@mipmap/ic_book"
+        android:layout_marginTop="96dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/bookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PH Book Title"
+        android:textAlignment="center"
+        android:textColor="@color/closeToBlack"
+        android:textSize="25dp"
+        android:layout_marginTop="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/bookGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
+        android:gravity="center"
+        android:text="PH Book genre"
+        android:textAlignment="center"
+        android:textColor="@color/closeToBlack"
+        android:textSize="14dp"
+        android:layout_alignBottom="@+id/bookTitle"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/numberContributors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="123"
+        android:textColor="@color/closeToBlack"
+        android:textSize="25dp"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
+
+    <ImageView
+        android:id="@+id/personImage"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_below="@+id/imageButton"
+        android:layout_toRightOf="@+id/bookGenre"
+        android:layout_toEndOf="@+id/bookGenre" />
+
+</RelativeLayout>
