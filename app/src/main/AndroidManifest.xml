@@ -15,9 +15,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity android:name=".BookView">
+
+        </activity>
+<<<<<<< HEAD
         <activity android:name=".database.TestDatabase"/>
         <activity android:name=".BookView" />
+=======
+
+>>>>>>> 21e3c0c363b51b45295e2f043a094ee9e330b4ac
         <activity android:name=".OverviewActivity">
 
         </activity>

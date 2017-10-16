@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/row_chapter_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_row_chapter"
+        android:textSize="@dimen/size_row_chapter_id" />
 
     <TextView
         android:id="@+id/row_chapter_open_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/overview_test_row_id"
-        android:textSize="@dimen/size_row_chapter_id"/>
+        android:textSize="@dimen/size_row_chapter_id"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/row_chapter_open"
+        android:layout_toEndOf="@+id/row_chapter_open"
+        android:layout_marginLeft="@dimen/size_margin_offset"
+        android:layout_marginStart="@dimen/size_margin_offset"/>
 
     <TextView
         android:id="@+id/row_chapter_open_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/row_chapter_open_id"
-        android:layout_toEndOf="@+id/row_chapter_open_id"
         android:text="@string/overview_test_row_name"
         android:textSize="@dimen/size_row_chapter_name"
-        android:layout_marginLeft="@dimen/size_margin_offset"
-        android:layout_marginStart="@dimen/size_margin_offset"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/row_chapter_open_id"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/ib_chapter_add" />
+
+    <ImageButton
+        android:id="@+id/ib_chapter_add"
+        android:layout_width="@dimen/size_row_icon"
+        android:layout_height="@dimen/size_row_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/overview_chapter_row_lock_description"
+        app:srcCompat="@drawable/ic_add" />
 
 
 </RelativeLayout>

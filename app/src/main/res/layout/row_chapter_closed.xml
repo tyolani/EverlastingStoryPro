@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/row_chapter"
+        android:id="@+id/row_chapter_closed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/overview_row_chapter"
@@ -19,8 +19,8 @@
         android:text="@string/overview_test_row_id"
         android:textSize="@dimen/size_row_chapter_id"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/row_chapter"
-        android:layout_toEndOf="@+id/row_chapter"
+        android:layout_toRightOf="@+id/row_chapter_closed"
+        android:layout_toEndOf="@+id/row_chapter_closed"
         android:layout_marginLeft="@dimen/size_margin_offset"
         android:layout_marginStart="@dimen/size_margin_offset"/>
 
