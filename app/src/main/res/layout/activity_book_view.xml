@@ -1,43 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity">
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/menu_bookView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+    />
 
-    <TextView
-        android:id="@+id/bookView_mockup_textView1"
-        android:layout_width="match_parent"
-        android:layout_height="236dp"
-        android:text="@string/bookView_mockup_bookText"
-        android:textSize="8pt"/>
 
-    <TextView
-        android:id="@+id/bookView_mockup_textView2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Chapter X"
-        android:gravity="center"
-        android:textSize="10pt"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/bookView_mockup_textView3"
+    <ListView
+        android:id="@+id/lv_bookview_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/bookView_mockup_bookText"
-        android:textSize="8pt"/>
-
-</LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/menu_bookView"/>
 
 
+    </RelativeLayout>
