@@ -75,6 +75,9 @@ public class Chapter {
         //Here goes fancy math to calculate the pagecount depending on the arraylist of contributions
         return 1337;
     }
+    public String getName(){
+        return name;
+    }
     public boolean isFinished(){
         return isFinished;
     }
