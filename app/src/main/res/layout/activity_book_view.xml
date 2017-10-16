@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/menu_bookView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/bookView_mockup_textView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="A murder in Paris' Louvre Museum and cryptic clues in some of Leonardo da Vinci's most famous paintings lead to the discovery of a religious mystery. For 2,000 years a secret society closely guards information that -- should it come to light -- could rock the very foundations of Christianity.\n"
-        />
+        android:layout_height="236dp"
+        android:text="@string/bookView_mockup_bookText"
+        android:textSize="8pt"/>
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/bookView_mockup_textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chapter 3\n"
+        android:layout_height="50dp"
+        android:text="Chapter X"
         android:gravity="center"
-        />
+        android:textSize="10pt"
+        android:textStyle="bold"/>
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/bookView_mockup_textView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="The Da Vinci Code is a 2003 mystery-detective novel by Dan Brown. It follows symbologist Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris, when they become involved in a battle between the Priory of Sion and Opus Dei over the possibility of Jesus Christ having been a companion to Mary Magdalene.\n\nThe title of the novel refers, among other things, to the finding of the first murder victim in the Grand Gallery of the Louvre, naked and posed similar to Leonardo da Vinci's famous drawing, the Vitruvian Man, with a cryptic message written beside his body and a pentacle drawn on his chest in his own blood."
-        />
+        android:layout_height="match_parent"
+        android:text="@string/bookView_mockup_bookText"
+        android:textSize="8pt"/>
+
 </LinearLayout>
+
 
