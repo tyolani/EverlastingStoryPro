@@ -38,13 +38,13 @@ public class Book {
         return mChapters.add(chapterToAdd);
     }
     public boolean createNewChapter(String name, String initialText, String author){
-        Contribution tempContribution = new Contribution(initialText);
-        Chapter tempChapter = new Chapter(author,tempContribution,name);
+        Contribution tempContribution = new Contribution(initialText, author);
+        Chapter tempChapter = new Chapter(tempContribution,name);
         return mChapters.add(tempChapter);
     }
     public boolean createNewChapter(String name, Image initialImage, String author){
-        Contribution tempContribution = new Contribution(initialImage);
-        Chapter tempChapter = new Chapter(author,tempContribution,name);
+        Contribution tempContribution = new Contribution(initialImage, author);
+        Chapter tempChapter = new Chapter(tempContribution,name);
         return mChapters.add(tempChapter);
     }
     public int getChapterIndex(String chapterName){
@@ -54,6 +54,14 @@ public class Book {
             }
         }
         return -1;
+    }
+    //Returns the number of pages of all chapters combined
+    public int getmPageCount(){
+        int totalPages = 0;
+        for(int i = 0; i < mChapters.size(); i++){
+            totalPages += mChapters.get(i).getPageCount();
+        }
+        return totalPages;
     }
 
 

@@ -14,6 +14,7 @@ public class Contribution {
     private Image imageContent;
     private String textContent;
     private boolean containsImageContent;
+    private String author;
 
     //
     //--------------------------------- Contructors ---------------------------------
@@ -23,14 +24,16 @@ public class Contribution {
         textContent = "";
         containsImageContent = false;
     }
-    public Contribution(Image i){
+    public Contribution(Image i, String a){
         imageContent = i;
         textContent = "";
+        author = a;
         containsImageContent = true;
     }
-    public Contribution(String s){
+    public Contribution(String s, String a){
         imageContent = null;
         textContent = s;
+        author = a;
         containsImageContent = false;
     }
 
@@ -46,8 +49,14 @@ public class Contribution {
         textContent = s;
         containsImageContent = false;
     }
+    public void setAuthor(String a){
+        author = a;
+    }
     public Image getImageContent(){
         return imageContent;
+    }
+    public String getAuthor(){
+        return author;
     }
     public String getTextContent(){
         if(!containsImageContent){
