@@ -22,6 +22,7 @@ public class Contribution {
     public Contribution(){
         imageContent = null;
         textContent = "";
+        author = "";
         containsImageContent = false;
     }
     public Contribution(Image i, String a){
