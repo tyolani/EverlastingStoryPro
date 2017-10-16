@@ -35,17 +35,32 @@ public class Book {
     }
 
     public boolean addNewChapter(Chapter chapterToAdd){
-        return mChapters.add(chapterToAdd);
+        if(getNumberOfOpenChapters() <= 3){
+            return mChapters.add(chapterToAdd);
+        }
+        else {
+            return false;
+        }
     }
     public boolean createNewChapter(String name, String initialText, String author){
-        Contribution tempContribution = new Contribution(initialText, author);
-        Chapter tempChapter = new Chapter(tempContribution,name);
-        return mChapters.add(tempChapter);
+        if(getNumberOfOpenChapters() <= 3){
+            Contribution tempContribution = new Contribution(initialText, author);
+            Chapter tempChapter = new Chapter(tempContribution,name);
+            return mChapters.add(tempChapter);
+        }
+        else {
+            return false;
+        }
     }
     public boolean createNewChapter(String name, Image initialImage, String author){
-        Contribution tempContribution = new Contribution(initialImage, author);
-        Chapter tempChapter = new Chapter(tempContribution,name);
-        return mChapters.add(tempChapter);
+        if(getNumberOfOpenChapters() <= 3){
+            Contribution tempContribution = new Contribution(initialImage, author);
+            Chapter tempChapter = new Chapter(tempContribution,name);
+            return mChapters.add(tempChapter);
+        }
+        else {
+            return false;
+        }
     }
     public int getChapterIndex(String chapterName){
         for(int i = 0; i < mChapters.size(); i++){
@@ -62,6 +77,15 @@ public class Book {
             totalPages += mChapters.get(i).getPageCount();
         }
         return totalPages;
+    }
+    public int getNumberOfOpenChapters(){
+        int totalOpen = 0;
+        for(int i = 0; i < mChapters.size(); i++){
+            if(!mChapters.get(i).isFinished()){
+                totalOpen++;
+            }
+        }
+        return totalOpen;
     }
 
 
