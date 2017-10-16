@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_title">30sp</dimen>
+    <dimen name="size_table_of_contents">18sp</dimen>
+    <dimen name="size_row_chapter_id">15sp</dimen>
+    <dimen name="size_row_chapter_name">20sp</dimen>
+    <dimen name="size_row_icon">45dp</dimen>
+    <dimen name="size_margin_offset">5dp</dimen>
+</resources>

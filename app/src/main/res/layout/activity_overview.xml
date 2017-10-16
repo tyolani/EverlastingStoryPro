@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity">
+
+
+    <TextView
+        android:id="@+id/tv_overview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/overview_test_title"
+        android:textSize="@dimen/size_title"/>
+
+    <ImageView
+        android:id="@+id/iv_overview_contributors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_overview_title"
+        android:contentDescription="@string/overview_contributors_description"
+        app:srcCompat="@drawable/ic_person" />
+
+    <TextView
+        android:id="@+id/tv_overview_pages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_pages"
+        android:layout_alignBaseline="@+id/tv_overview_contributor_count"
+        android:layout_alignBottom="@+id/tv_overview_contributor_count"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_overview_page_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_test_page_count"
+        android:layout_above="@+id/tv_overview_about_book"
+        android:layout_toRightOf="@+id/tv_overview_pages"
+        android:layout_toEndOf="@+id/tv_overview_pages"
+        android:layout_marginLeft="@dimen/size_margin_offset"
+        android:layout_marginStart="@dimen/size_margin_offset" />
+
+    <TextView
+        android:id="@+id/tv_overview_contributor_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_overview_contributors"
+        android:layout_toLeftOf="@+id/iv_overview_contributors"
+        android:layout_toStartOf="@+id/iv_overview_contributors"
+        android:text="@string/overview_test_contributor_count" />
+
+    <TextView
+        android:id="@+id/tv_overview_about_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_test_about"
+        android:layout_below="@+id/tv_overview_pages"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:id="@+id/tv_overview_table_of_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_overview_about_book"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/overview_table_of_contents"
+        android:textSize="@dimen/size_table_of_contents"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btn_add_chapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/overview_add_chapter" />
+
+    <ListView
+        android:id="@+id/lv_table_of_contents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add_chapter"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_overview_table_of_contents" />
+
+
+</RelativeLayout>
