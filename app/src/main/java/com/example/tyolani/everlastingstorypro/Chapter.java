@@ -1,5 +1,7 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ public class Chapter {
     //
     //--------------------------------- Global Variables ---------------------------------
     //
-    private ArrayList<Contribution> contributions;
+    private ArrayList<Contribution> contributions = new ArrayList<Contribution>();
     private boolean isFinished;
     private String name;
 
@@ -41,16 +43,17 @@ public class Chapter {
     }
     //Concats all of the contributions to a string and returns it, concats images just as "Here goes image X".
     public String getText(){
-        String tempString = "<br>";
+        String tempString = "";
 
         for (int i = 0; i<contributions.size(); i++) {
+
             if(!contributions.get(i).isImageContribution()){
-                tempString.concat(contributions.get(i).getTextContent());
+                tempString +=(contributions.get(i).getTextContent());
             }
             else{
-                tempString.concat("Here goes image " + i + ".");
+                tempString +=("Here goes image " + i + ".");
             }
-            tempString.concat("<br><br>");
+            tempString +=(contributions.get(i).getTextContent());
         }
 
         return tempString;
