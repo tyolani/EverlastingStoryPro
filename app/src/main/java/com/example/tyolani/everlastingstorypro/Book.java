@@ -21,19 +21,16 @@ public class Book {
         mGenre = genre;
         this.mOverview = overview;
         this.mTitle = title;
-<<<<<<< HEAD
         mChapters = new ArrayList<Chapter>();
     }
     public Book(String genre, String title){
         mGenre = genre;
         mTitle = title;
         mChapters = new ArrayList<Chapter>();
-=======
         newContributor();
     }
     public Book(String title){
         this.mTitle = title;
->>>>>>> 21e3c0c363b51b45295e2f043a094ee9e330b4ac
     }
     public Book(){
         // Just an empty book
@@ -111,14 +108,13 @@ public class Book {
         }
         return totalOpen;
     }
-<<<<<<< HEAD
-    public int getNumberOfAuthors(){
+    public int getNumberOfAuthors() {
         int totalAuthors = 0;
-        for(int i = 0; i < mChapters.size(); i++){
+        for (int i = 0; i < mChapters.size(); i++) {
             totalAuthors += mChapters.get(i).getNumberOfAuthors();
         }
         return totalAuthors;
-=======
+    }
     public String getBookOverview() {
         return this.mOverview;
     }
@@ -128,7 +124,6 @@ public class Book {
 
     public ArrayList<Chapter> getChapters() {
         return this.mChapters;
->>>>>>> 21e3c0c363b51b45295e2f043a094ee9e330b4ac
     }
 
     public ArrayList<Chapter> getmChapters(){
