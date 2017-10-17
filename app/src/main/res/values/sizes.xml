@@ -6,5 +6,5 @@
     <dimen name="size_row_chapter_name">20sp</dimen>
     <dimen name="size_row_icon">45dp</dimen>
     <dimen name="size_margin_offset">5dp</dimen>
-    <dimen name="size_book_content">12sp</dimen>
+    <dimen name="size_book_content">16sp</dimen>
 </resources>

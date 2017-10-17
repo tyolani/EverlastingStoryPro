@@ -13,7 +13,6 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.ArrayList;
 
 
@@ -101,11 +100,16 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
                         startActivity(contributionIntent);
                     }
                 });
-
                 return true;
             case R.id.action_add_paragraph:
+                Intent contributionParagraphIntent = new Intent(getApplicationContext(),ContributionActivity.class);
+                contributionParagraphIntent.putExtra("addParagraph", firstVisibleRow);
+                startActivity(contributionParagraphIntent);
                 return true;
             case R.id.action_add_image:
+                //todo User can add ONE an image to the end or of any chapter(if they are “open”)
+                //todo User can add ONE image to the beginning of a chapter if it does not have any text (initialized)
+                //todo User can add image right beneath another image
                 return true;
             default:
                 // the user's action was not recognized
@@ -120,7 +124,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         firstVisibleRow = lvBookContent.getFirstVisiblePosition();
         lastVisibleRow = lvBookContent.getLastVisiblePosition();
         for(int i = firstVisibleRow; i <= lastVisibleRow; i++) {
-            Log.d("onScroll()..Position", i+"");
+            //Log.d("onScroll()..Position", i+"");
         }
     }
 
