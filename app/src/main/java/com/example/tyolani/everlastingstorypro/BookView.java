@@ -4,22 +4,25 @@ import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
+
 
 import static com.example.tyolani.everlastingstorypro.R.string.bookView_dialog_tv;
 import static com.example.tyolani.everlastingstorypro.R.string.bookView_mockup_bookText;
 
-public class BookView extends AppCompatActivity {
+public class BookView extends AppCompatActivity implements AbsListView.OnScrollListener {
 
     private   ArrayList<Chapter> mockupchapters = new ArrayList<>();
+    private   ListView lvBookContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,9 @@ public class BookView extends AppCompatActivity {
         mockupchapters.add(chap2);
         mockupchapters.add(chap3);
 
-        ListView lvBookContent = findViewById(R.id.lv_bookview_content);
+        lvBookContent = findViewById(R.id.lv_bookview_content);
         lvBookContent.setAdapter(new BookViewAdapter(this, mockupchapters));
-
+        lvBookContent.setOnScrollListener(BookView.this);
     }
 
     @Override
@@ -51,6 +54,7 @@ public class BookView extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.bookview_items, menu);
         return true;
     }
+
 
     //Handling actions from the menu_bookView toolbar
     @Override
@@ -60,7 +64,6 @@ public class BookView extends AppCompatActivity {
                 // Create custom dialog object
                 final Dialog dialog = new Dialog(BookView.this);
                 dialog.setContentView(R.layout.bookview_dialog);
-
 
                 TextView tvBookviewDialog = (TextView) dialog.findViewById(R.id.tv_bookview_dialog);
                 tvBookviewDialog.setText(getString(bookView_dialog_tv)); //+concat ID
@@ -100,5 +103,24 @@ public class BookView extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onScrollStateChanged(AbsListView absListView, int i) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {
+        int firstVisibleRow = lvBookContent.getFirstVisiblePosition();
+        int lastVisibleRow = lvBookContent.getLastVisiblePosition();
+        /*Now we can see the first and last visible chapters in the view, and then we
+        can easily send the "right" chapter to the dialog and the to the contributionActivity */
+        for(int i=firstVisibleRow;i<=lastVisibleRow;i++) {
+            Log.d("getItemPosition",i + "=" + lvBookContent.getItemAtPosition(i));
+            Log.d("getChildAt",i + "=" + lvBookContent.getChildAt(i));
+        }
+
+    }
+
 }
 

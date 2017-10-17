@@ -23,6 +23,9 @@ public class BookViewAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+
+
+
     @Override
     public int getCount() {
         return chapters.size();
@@ -43,11 +46,12 @@ public class BookViewAdapter extends BaseAdapter {
         View rootview = convertView;
         if (rootview == null) rootview = inflater.inflate(R.layout.chapter_item, null);
 
-        TextView bookview_title = rootview.findViewById(R.id.tv_bookview_title);
-        TextView bookview_content = rootview.findViewById(R.id.tv_bookview_content);
+        TextView bookviewtitle = rootview.findViewById(R.id.tv_bookview_title);
+        TextView bookviewcontent = rootview.findViewById(R.id.tv_bookview_content);
 
-        bookview_title.setText("Chapter" + String.valueOf(position + 1) + ": " +  chapters.get(position).getName());
-        bookview_content.setText(chapters.get(position).getText());
+        bookviewtitle.setText("Chapter" + String.valueOf(position + 1) + ": " +  chapters.get(position).getName());
+        bookviewcontent.setText(chapters.get(position).getText());
+
 
         return rootview;
     }
