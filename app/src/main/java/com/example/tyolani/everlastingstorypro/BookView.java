@@ -1,17 +1,20 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.tyolani.everlastingstorypro.R.string.bookView_dialog_tv;
 import static com.example.tyolani.everlastingstorypro.R.string.bookView_mockup_bookText;
 
 public class BookView extends AppCompatActivity {
@@ -54,6 +57,39 @@ public class BookView extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_chapter:
+                // Create custom dialog object
+                final Dialog dialog = new Dialog(BookView.this);
+                dialog.setContentView(R.layout.bookview_dialog);
+
+
+                TextView tvBookviewDialog = (TextView) dialog.findViewById(R.id.tv_bookview_dialog);
+                tvBookviewDialog.setText(getString(bookView_dialog_tv)); //+concat ID
+
+                dialog.show();
+
+                Button beforeBtn = (Button) dialog.findViewById(R.id.btn_bookview_dialog_before);
+                // if before btn is clicked
+                beforeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext()," Transfer the user to add chapter before" , Toast.LENGTH_LONG).show();
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+
+                Button afterBtn = (Button) dialog.findViewById(R.id.btn_bookview_dialog_after);
+                // if after btn is clicked
+                afterBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext()," Transfer the user to add chapter AFTER" , Toast.LENGTH_LONG).show();
+
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+
                 return true;
             case R.id.action_add_paragraph:
                 return true;

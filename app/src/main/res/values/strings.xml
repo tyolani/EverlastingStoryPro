@@ -5,11 +5,14 @@
     <string name="bookView_action_add_chapter">Add Chapter</string>
     <string name="bookView_action_add_paragraph">Add Paragraph</string>
     <string name="bookView_action_add_image">Add Image</string>
+    <string name="bookView_dialog_btnTxt_before">Add Before</string>
+    <string name="bookView_dialog_btnTxt_after">Add After</string>
+    <string name="bookView_dialog_tv">"Choose to add a new chapter before or after chapter: "</string>
+
     <string name="overview_pages">Pages:</string>
     <string name="overview_table_of_contents">Table of Contents</string>
     <string name="overview_add_chapter">Add chapter</string>
     <string name="overview_row_chapter">Chapter</string>
-
     <string name="overview_contributors_description">Image for contributor count</string>
     <string name="overview_chapter_row_lock_description">Icon indicating that chapter is locked for further contribution</string>
 
