@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,7 +19,7 @@ import java.util.Iterator;
  * Created by hedholm on 2017-10-12.
  */
 
-public class Book {
+public class Book implements Serializable {
 
     private int mContributorCount;
     private int mPageCount;
@@ -29,16 +30,21 @@ public class Book {
 
     public Book(String overview, String genre, String title) {
         mGenre = genre;
-        this.mOverview = overview;
-        this.mTitle = title;
+        mOverview = overview;
+        mTitle = title;
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
     }
     public Book(String genre, String title){
         mGenre = genre;
         mTitle = title;
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
         newContributor();
     }
+<<<<<<< HEAD
     public Book(String id){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
         DatabaseReference book_idRef = mDatabase.child(id);
@@ -95,10 +101,18 @@ public class Book {
 
 
 
+=======
+    public Book(String title){
+        mTitle = title;
+        mPageCount = 0;
+        mContributorCount = 0;
+>>>>>>> 883496ddd5e15f6f5d27c18104f91e29d6d4a2dc
     }
     public Book(){
         // Just an empty book
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
     }
 
     /**

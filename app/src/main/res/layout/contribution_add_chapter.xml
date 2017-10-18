@@ -3,7 +3,17 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity">
+                tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity"
+                android:background="@color/colorReadWrite">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/menu_contribution_addChapter"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    />
+
 
     <EditText
         android:id="@+id/et_contribution_add_chapter_title"
@@ -15,6 +25,7 @@
         android:background="#00000000"
         android:gravity="center"
         android:maxLines="1"
+        android:layout_below="@+id/menu_contribution_addChapter"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 

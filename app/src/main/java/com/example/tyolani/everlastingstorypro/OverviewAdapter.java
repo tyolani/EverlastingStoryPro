@@ -22,6 +22,9 @@ public class OverviewAdapter extends BaseAdapter {
     ArrayList<Chapter> chapters;
     private static LayoutInflater inflater = null;
 
+    TextView chapter_id;
+    TextView chapter_name;
+
     public OverviewAdapter(Context context, ArrayList<Chapter> chapters) {
         this.context = context;
         this.chapters = chapters;
@@ -50,12 +53,14 @@ public class OverviewAdapter extends BaseAdapter {
         if (vi == null) {
             if (chapters.get(position).isFinished()) {
                 vi = inflater.inflate(R.layout.row_chapter_closed, null);
+                chapter_id = vi.findViewById(R.id.row_chapter_closed_id);
+                chapter_name = vi.findViewById(R.id.row_chapter_closed_name);
             } else {
                 vi = inflater.inflate(R.layout.row_chapter_open, null);
+                chapter_id = vi.findViewById(R.id.row_chapter_open_id);
+                chapter_name = vi.findViewById(R.id.row_chapter_open_name);
             }
         }
-        TextView chapter_id = vi.findViewById(R.id.row_chapter_closed_id);
-        TextView chapter_name = vi.findViewById(R.id.row_chapter_closed_name);
 
         String chapter = chapters.get(position).getName();
 

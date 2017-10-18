@@ -35,6 +35,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         Toolbar menu = (Toolbar) findViewById(R.id.menu_bookView);
         setSupportActionBar(menu);
 
+
         //Mockup for listview adapter, later retrieve chapters from book
         String test = getString(bookView_mockup_bookText);
         Contribution contrib1 = new Contribution(test,"Elsa Mjoll");

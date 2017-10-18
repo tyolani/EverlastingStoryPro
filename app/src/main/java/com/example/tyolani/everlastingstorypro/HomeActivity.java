@@ -4,9 +4,16 @@ package com.example.tyolani.everlastingstorypro;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+>>>>>>> 883496ddd5e15f6f5d27c18104f91e29d6d4a2dc
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -14,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView titleView;
     TextView genreView;
     TextView authorCount;
+    ImageView bookButton;
 
     Book activeBook;
     ArrayList<Book> archivedBooks;
@@ -38,7 +46,20 @@ public class HomeActivity extends AppCompatActivity {
         genreView.setText(activeBook.getGenre());
         authorCount.setText(Integer.toString(activeBook.getNumberOfAuthors()));
 
+<<<<<<< HEAD
         //NEED TO REFRESH THE UI HERE AFTER THE THINGS HAVE BEEN LOADED FROM FIREBASE!
+=======
+        bookButton = findViewById(R.id.imageButton);
+        bookButton.setImageResource(R.mipmap.ic_book);
+        bookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, OverviewActivity.class);
+                intent.putExtra("book", activeBook);
+                startActivity(intent);
+            }
+        });
+>>>>>>> 883496ddd5e15f6f5d27c18104f91e29d6d4a2dc
     }
 
     //ONLY FOR TESTING PURPOSES!

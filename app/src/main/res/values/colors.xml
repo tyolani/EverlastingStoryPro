@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7F6715</color>
-    <color name="colorPrimaryDark">#7F703B</color>
-    <color name="colorAccent">#CCA622</color>
-    <color name="eggWhite">#f3e5d2</color>
-    <color name="eggYellow">#ffdb4d</color>
+    <color name="colorPrimary">#FFEB3B</color>
+    <color name="colorPrimaryDark">#FDD835</color>
+    <color name="colorAccent">#FFF176</color>
+    <color name="gradientStart">#FFF9C4</color>
+    <color name="gradientMiddle">#FFF176</color>
+    <color name="gradientEnd">#FFEB3B</color>
     <color name="closeToBlack">#333333</color>
+    <color name="colorReadWrite">#FFF9C4</color>
 </resources>

@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tyolani.everlastingstorypro.HomeActivity"
-    android:background="@drawable/main_gradient">
+    tools:context="com.example.tyolani.everlastingstorypro.HomeActivity">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@mipmap/ic_book"
         android:layout_marginTop="96dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/bookTitle"
