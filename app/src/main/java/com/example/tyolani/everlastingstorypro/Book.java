@@ -44,8 +44,8 @@ public class Book implements Serializable {
         mContributorCount = 0;
         newContributor();
     }
-<<<<<<< HEAD
-    public Book(String id){
+
+    public Book(String id) {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
         DatabaseReference book_idRef = mDatabase.child(id);
         DatabaseReference book_chaptersRef = book_idRef.child("Chapters");
@@ -78,7 +78,7 @@ public class Book implements Serializable {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Log.d("DEBUG",child.getValue().toString());
+                    Log.d("DEBUG", child.getValue().toString());
 
                     mChapters.add(new Chapter("Test test test"));
                     mChapters.add(new Chapter("Test 2 test 2 test 2"));
@@ -98,16 +98,8 @@ public class Book implements Serializable {
                 Log.w("onCancelled", databaseError.toException());
             }
         });
-
-
-
-=======
-    public Book(String title){
-        mTitle = title;
-        mPageCount = 0;
-        mContributorCount = 0;
->>>>>>> 883496ddd5e15f6f5d27c18104f91e29d6d4a2dc
     }
+
     public Book(){
         // Just an empty book
         mChapters = new ArrayList<Chapter>();
