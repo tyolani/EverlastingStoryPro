@@ -105,12 +105,14 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
             case R.id.action_add_paragraph:
                 Intent contributionParagraphIntent = new Intent(getApplicationContext(),ContributionActivity.class);
                 contributionParagraphIntent.putExtra("addParagraph", firstVisibleRow);
+                contributionParagraphIntent.putExtra("addP", "paragraph");
                 startActivity(contributionParagraphIntent);
                 return true;
             case R.id.action_add_image:
-                //todo User can add ONE an image to the end or of any chapter(if they are “open”)
-                //todo User can add ONE image to the beginning of a chapter if it does not have any text (initialized)
-                //todo User can add image right beneath another image
+                Intent contributionImageIntent = new Intent(getApplicationContext(),ContributionActivity.class);
+                contributionImageIntent.putExtra("addImage", firstVisibleRow);
+                contributionImageIntent.putExtra("addI", "image");
+                startActivity(contributionImageIntent);
                 return true;
             default:
                 // the user's action was not recognized
