@@ -35,6 +35,11 @@ public class Chapter {
         //Just to be able to initialize a chapter without any contribution
         isFinished = false;
     }
+    public Chapter(String newname, boolean done, ArrayList<Contribution> newcontributions){
+        name = newname;
+        isFinished = done;
+        contributions = newcontributions;
+    }
 
     //
     //--------------------------------- Methods ---------------------------------

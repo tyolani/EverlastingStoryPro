@@ -1,8 +1,18 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.content.Intent;
 import android.media.Image;
+import android.provider.ContactsContract;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by hedholm on 2017-10-12.
@@ -29,8 +39,62 @@ public class Book {
         mChapters = new ArrayList<Chapter>();
         newContributor();
     }
-    public Book(String title){
-        this.mTitle = title;
+    public Book(String id){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
+        DatabaseReference book_idRef = mDatabase.child(id);
+        DatabaseReference book_chaptersRef = book_idRef.child("Chapters");
+        mChapters = new ArrayList<Chapter>();
+
+        book_idRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mTitle = dataSnapshot.child("Title").getValue(String.class);
+                mGenre = dataSnapshot.child("Genre").getValue(String.class);
+                mOverview = dataSnapshot.child("Overview").getValue(String.class);
+
+                mPageCount = dataSnapshot.child("PageCount").getValue(Integer.class);
+                mContributorCount = dataSnapshot.child("ContributorCount").getValue(Integer.class);
+                Log.d("DEBUG", mTitle);
+                Log.d("DEBUG", mGenre);
+                Log.d("DEBUG", mOverview);
+                Log.d("DEBUG", String.valueOf(mPageCount));
+                Log.d("DEBUG", String.valueOf(mContributorCount));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("onCancelled", databaseError.toException());
+            }
+        });
+        book_chaptersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Log.d("DEBUG",child.getValue().toString());
+
+                    mChapters.add(new Chapter("Test test test"));
+                    mChapters.add(new Chapter("Test 2 test 2 test 2"));
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //HERE SHOULD BE SOME CONVERSION FROM JSON TO ACTUAL DATA
+                    //WE NEED TO CREATE CHAPTERS BASED ON THE CHILDS, ADD THEM TO THE BOOK'S CHAPTER ARRAY
+                    //ALSO NEED TO CREATE CONTRIBUTIONS BASED ON THE DATA OVER IN THE CHAPTER CONSTRUCTOR -->
+
+                    // Chapter(String newname, boolean done, ArrayList<Contribution> newcontributions)
+                    //---------------------------------------------------------------------------------------------------------------
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("onCancelled", databaseError.toException());
+            }
+        });
+
+
+
     }
     public Book(){
         // Just an empty book

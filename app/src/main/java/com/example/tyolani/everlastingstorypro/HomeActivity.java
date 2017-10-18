@@ -1,8 +1,10 @@
 
 package com.example.tyolani.everlastingstorypro;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,7 +24,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        activeBook = initSomeBook();
+        Book testBok = new Book("Book_01");  // HERE IS THE CALL LOADIGN THINGS FROM FIREBASE
+
+        //activeBook = initSomeBook();
+        activeBook = testBok;
         archivedBooks = new ArrayList<Book>();
 
         titleView = (TextView) findViewById(R.id.bookTitle);
@@ -32,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         titleView.setText(activeBook.getTitle());
         genreView.setText(activeBook.getGenre());
         authorCount.setText(Integer.toString(activeBook.getNumberOfAuthors()));
+
+        //NEED TO REFRESH THE UI HERE AFTER THE THINGS HAVE BEEN LOADED FROM FIREBASE!
     }
 
     //ONLY FOR TESTING PURPOSES!
