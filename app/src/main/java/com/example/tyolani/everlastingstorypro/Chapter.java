@@ -2,6 +2,7 @@ package com.example.tyolani.everlastingstorypro;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * Created by Kevin on 2017-10-16.
  */
 
-public class Chapter {
+public class Chapter implements Serializable {
 
     //
     //--------------------------------- Global Variables ---------------------------------
