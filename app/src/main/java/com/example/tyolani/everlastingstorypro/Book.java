@@ -75,6 +75,40 @@ public class Book {
         }
     }
 
+    public boolean addNewChapter(Chapter chapterToAdd, int index){
+        if(getNumberOfOpenChapters() <= 3){
+            mChapters.add(index, chapterToAdd);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean createNewChapter(String name, String initialText, String author, int index){
+        if(getNumberOfOpenChapters() <= 3){
+            Contribution tempContribution = new Contribution(initialText, author);
+            Chapter tempChapter = new Chapter(tempContribution,name);
+            mChapters.add(index, tempChapter);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean createNewChapter(String name, Image initialImage, String author, int index){
+        if(getNumberOfOpenChapters() <= 3){
+            Contribution tempContribution = new Contribution(initialImage, author);
+            Chapter tempChapter = new Chapter(tempContribution,name);
+            mChapters.add(index, tempChapter);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public int getChapterIndex(String chapterName){
         for(int i = 0; i < mChapters.size(); i++){
             if(mChapters.get(i).getName().equals(chapterName)){
