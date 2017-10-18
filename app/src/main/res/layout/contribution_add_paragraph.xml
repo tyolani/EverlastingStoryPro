@@ -3,7 +3,8 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity">
+                tools:context="com.example.tyolani.everlastingstorypro.OverviewActivity"
+                android:background="@color/colorReadWrite">
 
     <TextView
         android:id="@+id/tv_contribution_add_paragraph_title"

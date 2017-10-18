@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tyolani.everlastingstorypro.HomeActivity"
-    android:background="@drawable/main_gradient">
+    tools:context="com.example.tyolani.everlastingstorypro.HomeActivity">
 
     <ImageButton
         android:id="@+id/imageButton"
