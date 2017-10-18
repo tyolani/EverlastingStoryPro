@@ -3,7 +3,10 @@ package com.example.tyolani.everlastingstorypro;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ public class ContributionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         String extraChapter = getIntent().getExtras().getString("addChapter");
         int extraChapter2 = getIntent().getExtras().getInt("position");
         int extraParagraph = getIntent().getExtras().getInt("addParagraph");
@@ -37,7 +41,8 @@ public class ContributionActivity extends AppCompatActivity {
 
         if(action.equals("addChapter")) {
             setContentView(R.layout.contribution_add_chapter);
-
+            Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addChapter);
+            setSupportActionBar(menu);
 
             EditText editTextChapter = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
             editTextChapter.setTypeface(editTextChapter.getTypeface(), Typeface.BOLD);
@@ -54,6 +59,8 @@ public class ContributionActivity extends AppCompatActivity {
 
         }else if(action.equals("addParagraph")) {
             setContentView(R.layout.contribution_add_paragraph);
+            Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addParagraph);
+            setSupportActionBar(menu);
 
             //get right chapter and load it
             TextView textViewParagraphTitle = (TextView) findViewById(R.id.tv_contribution_add_paragraph_title);
@@ -63,8 +70,8 @@ public class ContributionActivity extends AppCompatActivity {
 
             //todo retrieve chapter content from database according to position
             TextView textViewParagraphContent = (TextView) findViewById(R.id.tv_contribution_add_paragraph_content);
-            textViewParagraphContent.setText(getString(bookView_mockup_bookText));
-            //textViewParagraphContent.setText("all the paragraphs shown here");
+            //textViewParagraphContent.setText(getString(bookView_mockup_bookText));
+            textViewParagraphContent.setText("all the paragraphs shown here");
             //Todo long text in  textViewParagraphContent is causing edittext below not to show up (just the keyboard)...
             textViewParagraphContent.setMovementMethod(new ScrollingMovementMethod());
 
@@ -80,4 +87,24 @@ public class ContributionActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.contribution_items, menu);
+        return true;
+    }
+
+
+    //Handling actions from the menu_bookView toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_contribution_addImage:
+                return true;
+            default:
+                // the user's action was not recognized
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
