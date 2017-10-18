@@ -1,5 +1,6 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,20 +29,20 @@ public class OverviewActivity extends AppCompatActivity {
 
         Book book = (Book) getIntent().getExtras().getSerializable("book");
 
+        Log.d("BOOK", String.valueOf(book.getAuthorCount()));
         for (Chapter c : book.getChapters()) {
             chapterArray.add(c);
         }
 
+        TextView tvBookTitle = findViewById(R.id.tv_overview_title);
+        TextView tvAboutBook = findViewById(R.id.tv_overview_about_book);
         TextView tvPageCount = findViewById(R.id.tv_overview_page_count);
         TextView tvContributorCount = findViewById(R.id.tv_overview_contributor_count);
-        TextView tvAboutBook = findViewById(R.id.tv_overview_about_book);
-        TextView tvBookTitle = findViewById(R.id.tv_overview_title);
 
-        tvPageCount.setText(book.getPageCount());
-        tvContributorCount.setText(book.getAuthorCount());
+        tvPageCount.setText(String.valueOf(book.getPageCount()));
+        tvContributorCount.setText(String.valueOf(book.getAuthorCount()));
         tvAboutBook.setText(book.getBookOverview());
         tvBookTitle.setText(book.getBookTitle());
-
         lvTableOfContents = findViewById(R.id.lv_table_of_contents);
         lvTableOfContents.setAdapter(new OverviewAdapter(this, chapterArray));
     }

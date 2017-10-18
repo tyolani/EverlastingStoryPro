@@ -2,13 +2,14 @@ package com.example.tyolani.everlastingstorypro;
 
 import android.media.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by hedholm on 2017-10-12.
  */
 
-public class Book {
+public class Book implements Serializable {
 
     private int mContributorCount;
     private int mPageCount;
@@ -19,22 +20,30 @@ public class Book {
 
     public Book(String overview, String genre, String title) {
         mGenre = genre;
-        this.mOverview = overview;
-        this.mTitle = title;
+        mOverview = overview;
+        mTitle = title;
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
     }
     public Book(String genre, String title){
         mGenre = genre;
         mTitle = title;
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
         newContributor();
     }
     public Book(String title){
-        this.mTitle = title;
+        mTitle = title;
+        mPageCount = 0;
+        mContributorCount = 0;
     }
     public Book(){
         // Just an empty book
         mChapters = new ArrayList<Chapter>();
+        mPageCount = 0;
+        mContributorCount = 0;
     }
 
     /**

@@ -2,11 +2,13 @@ package com.example.tyolani.everlastingstorypro;
 
 import android.media.Image;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin on 2017-10-16.
  */
 
-public class Contribution {
+public class Contribution implements Serializable{
 
     //
     //--------------------------------- Global Variables ---------------------------------
