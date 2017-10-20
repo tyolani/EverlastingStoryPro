@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ import static com.example.tyolani.everlastingstorypro.R.string.bookView_mockup_b
 
 public class BookView extends AppCompatActivity implements AbsListView.OnScrollListener {
 
-    public    ArrayList<Chapter> mockupchapters = new ArrayList<>();
-    private   ListView lvBookContent;
+    public  ArrayList<Chapter> mockupchapters = new ArrayList<>();
+    private ListView lvBookContent;
     private int firstVisibleRow;
     private int lastVisibleRow;
 
@@ -40,7 +41,9 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         String test = getString(bookView_mockup_bookText);
         Contribution contrib1 = new Contribution(test,"Elsa Mjoll",false);
         Chapter chap1 = new Chapter(contrib1,"Beyond the wall");
-        Chapter chap2 = new Chapter(contrib1,"Aftermath");
+        ArrayList<Contribution> contributionArrayList = new ArrayList<Contribution>();
+        contributionArrayList.add(contrib1);
+        Chapter chap2 = new Chapter("Aftermath", true, contributionArrayList);
         Chapter chap3 = new Chapter(contrib1,"Orange County");
 
         mockupchapters.add(chap1);
