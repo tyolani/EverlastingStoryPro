@@ -30,8 +30,9 @@ public class HomeActivity extends AppCompatActivity {
 
         Book testBok = new Book("Book_01");  // HERE IS THE CALL LOADIGN THINGS FROM FIREBASE
 
-        //activeBook = initSomeBook();
-        activeBook = testBok;
+
+        activeBook = initSomeBook();
+        //activeBook = testBok;
         archivedBooks = new ArrayList<Book>();
 
         titleView = (TextView) findViewById(R.id.bookTitle);
@@ -40,7 +41,9 @@ public class HomeActivity extends AppCompatActivity {
 
         titleView.setText(activeBook.getTitle());
         genreView.setText(activeBook.getGenre());
-        authorCount.setText(Integer.toString(activeBook.getNumberOfAuthors()));
+        authorCount.setText(Integer.toString(activeBook.getAuthorCount()));
+
+        activeBook.saveBookToFirebase("activeBook");
 
 
         //NEED TO REFRESH THE UI HERE AFTER THE THINGS HAVE BEEN LOADED FROM FIREBASE!
@@ -61,37 +64,44 @@ public class HomeActivity extends AppCompatActivity {
     //ONLY FOR TESTING PURPOSES!
     public Book initSomeBook(){
         Book tempBook = new Book("Action adventure", "Endless dreams");
-        tempBook.createNewChapter("A distant dream..","Here goes all text for chapter 1", "Kevin",false);
-        tempBook.getmChapters().get(0).addContribution(new Contribution("dfghijoklpsdfguio","Kevin", false));
-        tempBook.getmChapters().get(0).addContribution(new Contribution("dfghijoklpsdfguio","Kevin", false));
-        tempBook.getmChapters().get(0).addContribution(new Contribution("dfghijoklpsdfguio","Kevin", false));
-        tempBook.getmChapters().get(0).addContribution(new Contribution("dfghijoklpsdfguio","Kevin", false));
-        tempBook.getmChapters().get(0).addContribution(new Contribution("dfghijoklpsdfguio","Kevin", false));
-        tempBook.getmChapters().get(0).closeChapter();
+        ArrayList<Contribution> contch1 = new ArrayList<Contribution>();
+        contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
+        contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
+        contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
+        contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
+        contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
+        Chapter ch1 = new Chapter("A distant deam..", true, contch1);
+        ch1.closeChapter();
+        tempBook.addNewChapter(ch1);
 
-        tempBook.createNewChapter("Nobody expects..","Here goes all text for chapter 3", "Kalle", false);
-        tempBook.getmChapters().get(1).addContribution(new Contribution("dfghijoklpsdfguio","Kalle", false));
-        tempBook.getmChapters().get(1).addContribution(new Contribution("dfghijoklpsdfguio","Kalle", false));
-        tempBook.getmChapters().get(1).addContribution(new Contribution("dfghijoklpsdfguio","Kalle", false));
-        tempBook.getmChapters().get(1).addContribution(new Contribution("dfghijoklpsdfguio","Kalle", false));
-        tempBook.getmChapters().get(1).addContribution(new Contribution("dfghijoklpsdfguio","Kalle", false));
-        tempBook.getmChapters().get(1).closeChapter();
+        ArrayList<Contribution> contch2 = new ArrayList<Contribution>();
+        contch2.add(new Contribution("dfghijoklpsdfguio","Lars", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Lars", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Lars", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Lars", false));
+        Chapter ch2 = new Chapter("Nobody expects..", true, contch2);
+        ch2.closeChapter();
+        tempBook.addNewChapter(ch2);
 
-        tempBook.createNewChapter("..The spanish inquisition!","Here goes all text for chapter 3", "Adam", false);
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
-        tempBook.getmChapters().get(2).addContribution(new Contribution("dfghijoklpsdfguio","Adam", false));
+        ArrayList<Contribution> contch3 = new ArrayList<Contribution>();
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        contch3.add(new Contribution("dfghijoklpsdfguio","Lasse", false));
+        Chapter ch3 = new Chapter(".. The Spanish Inquisition!", true, contch3);
+        ch3.closeChapter();
+        tempBook.addNewChapter(ch3);
 
-        tempBook.createNewChapter("Eller?","Here goes all text for chapter 4", "Gustaf", false);
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
-        tempBook.getmChapters().get(3).addContribution(new Contribution("dfghijoklpsdfguio","Gustaf", false));
         return tempBook;
     }
 }

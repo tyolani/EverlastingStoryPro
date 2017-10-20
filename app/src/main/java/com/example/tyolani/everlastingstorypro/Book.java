@@ -7,7 +7,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,8 +18,6 @@ import java.util.ArrayList;
 
 public class Book implements Serializable {
 
-    private int mContributorCount;
-    private int mPageCount;
     private String mGenre;
     private String mOverview;
     private String mTitle;
@@ -31,18 +28,12 @@ public class Book implements Serializable {
         mOverview = overview;
         mTitle = title;
         mChapters = new ArrayList<Chapter>();
-        mPageCount = 0;
-        mContributorCount = 0;
     }
     public Book(String genre, String title){
         mGenre = genre;
         mTitle = title;
         mChapters = new ArrayList<Chapter>();
-        mPageCount = 0;
-        mContributorCount = 0;
-        newContributor();
     }
-
     public Book(String id) {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
         DatabaseReference book_idRef = mDatabase.child(id);
@@ -55,9 +46,6 @@ public class Book implements Serializable {
                 mTitle = dataSnapshot.child("Title").getValue(String.class);
                 mGenre = dataSnapshot.child("Genre").getValue(String.class);
                 mOverview = dataSnapshot.child("Overview").getValue(String.class);
-
-                mPageCount = dataSnapshot.child("PageCount").getValue(Integer.class);
-                mContributorCount = dataSnapshot.child("ContributorCount").getValue(Integer.class);
             }
 
             @Override
@@ -81,28 +69,9 @@ public class Book implements Serializable {
             }
         });
     }
-
     public Book(){
         // Just an empty book
         mChapters = new ArrayList<Chapter>();
-        mPageCount = 0;
-        mContributorCount = 0;
-    }
-
-    /**
-     * Increases the contributor count by 1
-     */
-    public void newContributor() {
-        this.mContributorCount += 1;
-    }
-
-    public boolean addNewChapter(Chapter chapterToAdd){
-        if(getNumberOfOpenChapters() <= 3){
-            return mChapters.add(chapterToAdd);
-        }
-        else {
-            return false;
-        }
     }
 
     public boolean createNewChapter(String name, String initialText, String author, boolean isImage){
@@ -115,28 +84,6 @@ public class Book implements Serializable {
             return false;
         }
     }
-
-/*    public boolean createNewChapter(String name, Image initialImage, String author){
-        if(getNumberOfOpenChapters() <= 3){
-            Contribution tempContribution = new Contribution(initialImage, author);
-            Chapter tempChapter = new Chapter(tempContribution,name);
-            return mChapters.add(tempChapter);
-        }
-        else {
-            return false;
-        }
-    }*/
-
-    public boolean addNewChapter(Chapter chapterToAdd, int index){
-        if(getNumberOfOpenChapters() <= 3){
-            mChapters.add(index, chapterToAdd);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public boolean createNewChapter(String name, String initialText, String author, int index, boolean isImage){
         if(getNumberOfOpenChapters() <= 3){
             Contribution tempContribution = new Contribution(initialText, author, isImage);
@@ -148,19 +95,43 @@ public class Book implements Serializable {
             return false;
         }
     }
-
-/*    public boolean createNewChapter(String name, Image initialImage, String author, int index){
+    public boolean addNewChapter(Chapter chapterToAdd){
         if(getNumberOfOpenChapters() <= 3){
-            Contribution tempContribution = new Contribution(initialImage, author);
-            Chapter tempChapter = new Chapter(tempContribution,name);
-            mChapters.add(index, tempChapter);
+            return mChapters.add(chapterToAdd);
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean addNewChapter(Chapter chapterToAdd, int index){
+        if(getNumberOfOpenChapters() <= 3){
+            mChapters.add(index, chapterToAdd);
             return true;
         }
         else {
             return false;
         }
-    }*/
+    }
 
+
+    public String getGenre(){
+        return mGenre;
+    }
+    public String getTitle(){
+        return mTitle;
+    }
+    public String getOverview(){
+        return mOverview;
+    }
+    public void setTitle(String s){
+        mTitle = s;
+    }
+    public void setOverview(String s){
+        mOverview = s;
+    }
+    public void setGenre(String s){
+        mGenre = s;
+    }
     public int getChapterIndex(String chapterName){
         for(int i = 0; i < mChapters.size(); i++){
             if(mChapters.get(i).getName().equals(chapterName)){
@@ -169,7 +140,6 @@ public class Book implements Serializable {
         }
         return -1;
     }
-    //Returns the number of pages of all chapters combined
     public int getPageCount(){
         int totalPages = 0;
         for(int i = 0; i < mChapters.size(); i++){
@@ -194,44 +164,41 @@ public class Book implements Serializable {
         }
         return totalOpen;
     }
-    public int getNumberOfAuthors() {
-        int totalAuthors = 0;
-        for (int i = 0; i < mChapters.size(); i++) {
-            totalAuthors += mChapters.get(i).getNumberOfAuthors();
+    public int getContributionCount(){
+        int i = 0;
+        for(Chapter c : getChapters()){
+            i += c.getNumberOfContributions();
         }
-        return totalAuthors;
+        return i;
     }
-    public String getBookOverview() {
-        return this.mOverview;
-    }
-    public String getBookTitle() {
-        return this.mTitle;
-    }
-
     public ArrayList<Chapter> getChapters() {
-        return this.mChapters;
-    }
-
-    public ArrayList<Chapter> getmChapters(){
         return mChapters;
     }
 
-    public String getGenre(){
-        return mGenre;
-    }
-    public String getTitle(){
-        return mTitle;
-    }
-    public String getOverview(){
-        return mOverview;
-    }
-    public void setTitle(String s){
-        mTitle = s;
-    }
-    public void setOverview(String s){
-        mOverview = s;
-    }
-    public void setGenre(String s){
-        mGenre = s;
+    public void saveBookToFirebase(String reference){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
+        DatabaseReference book_idRef = mDatabase.child(reference);
+        DatabaseReference chapter_idRef = book_idRef.child("Chapters");
+
+        book_idRef.child("Title").setValue(getTitle());
+        book_idRef.child("Genre").setValue(getGenre());
+        book_idRef.child("ContributionCount").setValue(String.valueOf(getContributionCount()));
+        book_idRef.child("AuthorCount").setValue(String.valueOf(getAuthorCount()));
+        book_idRef.child("NumberOfOpenChapters").setValue(String.valueOf(getNumberOfOpenChapters()));
+        book_idRef.child("PageCount").setValue(String.valueOf(getPageCount()));
+        book_idRef.child("Overview").setValue(getOverview());
+
+        for(int i = 0; i < getChapters().size(); i ++){
+            chapter_idRef.child(String.valueOf(i)).child("Name").setValue(getChapters().get(i).getName());
+            chapter_idRef.child(String.valueOf(i)).child("isFinished").setValue(getChapters().get(i).isFinished());
+
+            for(int j = 0; j < getChapters().get(i).getContributions().size(); j++){
+
+                chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("author").setValue(getChapters().get(i).getContributions().get(j).getAuthor());
+                chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("textContent").setValue(getChapters().get(i).getContributions().get(j).getTextContent());
+                chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("imageContent").setValue(getChapters().get(i).getContributions().get(j).getImageContent());
+                chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("containsImageContent").setValue(getChapters().get(i).getContributions().get(j).isImageContribution());
+             }
+        }
     }
 }
