@@ -58,13 +58,16 @@ public class Book implements Serializable {
         book_chaptersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                //todo: Need to fix how we load the chapter object
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("dataSnapshot",String.valueOf(dataSnapshot.getChildrenCount()));
+
+                    Log.d("no chapter",snapshot.child("Name").toString());
+
                     Chapter chapterm = snapshot.getValue(Chapter.class);
                     addNewChapter(chapterm);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("onCancelled", databaseError.toException());
