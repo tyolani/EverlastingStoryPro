@@ -1,10 +1,12 @@
 package com.example.tyolani.everlastingstorypro;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class OverviewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
+        final int chapterposition = position;
         if (vi == null) {
             if (chapters.get(position).isFinished()) {
                 vi = inflater.inflate(R.layout.row_chapter_closed, null);
@@ -59,6 +62,17 @@ public class OverviewAdapter extends BaseAdapter {
                 vi = inflater.inflate(R.layout.row_chapter_open, null);
                 chapter_id = vi.findViewById(R.id.row_chapter_open_id);
                 chapter_name = vi.findViewById(R.id.row_chapter_open_name);
+
+                ImageButton imageButton = vi.findViewById(R.id.ib_chapter_add);
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent contributionParagraphIntent = new Intent(context, ContributionActivity.class);
+                        contributionParagraphIntent.putExtra("addParagraph", chapterposition);
+                        contributionParagraphIntent.putExtra("addP", "paragraph");
+                        context.startActivity(contributionParagraphIntent);
+                    }
+                });
             }
         }
 
