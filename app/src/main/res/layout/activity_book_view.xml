@@ -27,4 +27,38 @@
         android:layout_below="@+id/menu_bookView"/>
 
 
+
+    <RelativeLayout
+        android:id="@+id/bookview_loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        >
+
+        <ProgressBar
+            android:id="@+id/bookview_myProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="@color/closeToBlack"/>
+
+        <TextView
+            android:id="@+id/bookview_myTextProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bookview_myProgress"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:textSize="@dimen/size_title"
+            android:text="@string/bookView_spinner_text"/>
+
     </RelativeLayout>
+
+</RelativeLayout>

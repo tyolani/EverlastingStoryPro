@@ -2,6 +2,7 @@ package com.example.tyolani.everlastingstorypro;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,22 +12,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 
 import static com.example.tyolani.everlastingstorypro.R.string.bookView_dialog_tv;
-import static com.example.tyolani.everlastingstorypro.R.string.bookView_mockup_bookText;
 
 
 public class BookView extends AppCompatActivity implements AbsListView.OnScrollListener {
 
-    public  ArrayList<Chapter> mockupchapters = new ArrayList<>();
+    private ArrayList<Chapter> chapters = new ArrayList<>();
     private ListView lvBookContent;
     private int firstVisibleRow;
-    private int lastVisibleRow;
+    int delay = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +36,26 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         setSupportActionBar(menu);
 
 
-        //Mockup for listview adapter, later retrieve chapters from book
-        String test = getString(bookView_mockup_bookText);
-        Contribution contrib1 = new Contribution(test,"Elsa Mjoll",false);
-        Chapter chap1 = new Chapter(contrib1,"Beyond the wall");
-        ArrayList<Contribution> contributionArrayList = new ArrayList<Contribution>();
-        contributionArrayList.add(contrib1);
-        Chapter chap2 = new Chapter("Aftermath", true, contributionArrayList);
-        Chapter chap3 = new Chapter(contrib1,"Orange County");
+        final Book activeBook = new Book("activeBook");
 
-        mockupchapters.add(chap1);
-        mockupchapters.add(chap2);
-        mockupchapters.add(chap3);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                findViewById(R.id.bookview_loadingPanel).setVisibility(View.VISIBLE);
+                for (Chapter c : activeBook.getChapters()) {
+                    chapters.add(c);
+                }
+                inflateAdapter();
+            }
+        }, delay);
 
+    }
+
+    public void inflateAdapter(){
         lvBookContent = findViewById(R.id.lv_bookview_content);
-        lvBookContent.setAdapter(new BookViewAdapter(this, mockupchapters));
+        lvBookContent.setAdapter(new BookViewAdapter(this, chapters));
         lvBookContent.setOnScrollListener(BookView.this);
+        findViewById(R.id.bookview_loadingPanel).setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -74,7 +77,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
 
                 //set textview
                 TextView tvBookviewDialog = (TextView) dialog.findViewById(R.id.tv_bookview_dialog);
-                tvBookviewDialog.setText(getString(bookView_dialog_tv) + (firstVisibleRow+1) +": " + mockupchapters.get(firstVisibleRow).getName()); //+concat chapter no
+                tvBookviewDialog.setText(getString(bookView_dialog_tv) + (firstVisibleRow+1) +": " + chapters.get(firstVisibleRow).getName());
                 dialog.show();
 
                 Button beforeBtn = (Button) dialog.findViewById(R.id.btn_bookview_dialog_before);
@@ -128,7 +131,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {
         firstVisibleRow = lvBookContent.getFirstVisiblePosition();
-        lastVisibleRow = lvBookContent.getLastVisiblePosition();
+        int lastVisibleRow = lvBookContent.getLastVisiblePosition();
         for(int i = firstVisibleRow; i <= lastVisibleRow; i++) {
             //Log.d("onScroll()..Position", i+"");
         }
@@ -136,7 +139,6 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
 
     @Override
     public void onScrollStateChanged(AbsListView absListView, int i) {
-
 
     }
 

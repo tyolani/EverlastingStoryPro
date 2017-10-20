@@ -7,7 +7,9 @@
     <string name="bookView_action_add_image">Add Image</string>
     <string name="bookView_dialog_btnTxt_before">Add Before</string>
     <string name="bookView_dialog_btnTxt_after">Add After</string>
-    <string name="bookView_dialog_tv">"Choose to add a new chapter before or after \n Chapter"</string>
+    <string name="bookView_dialog_tv">Choose to add a new chapter before or after \n Chapter</string>
+    <string name="bookView_spinner_text">Loading chapters... \n Please wait</string>
+
 
     <string name="yes">Yes</string>
     <string name="no">No</string>

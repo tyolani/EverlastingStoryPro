@@ -42,11 +42,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         }, delay);
 
-        //activeBook.saveBookToFirebase("activeBook");
-
 
         bookButton = findViewById(R.id.iv_home_imageButton);
         bookButton.setImageResource(R.mipmap.ic_book);
+
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
-
+    //activeBook.saveBookToFirebase("activeBook");
     //ONLY FOR TESTING PURPOSES!
     public Book initSomeBook(){
         Book tempBook = new Book("Action adventure", "Endless dreams");
