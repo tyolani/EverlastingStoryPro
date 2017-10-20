@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,10 +49,14 @@ public class BookViewAdapter extends BaseAdapter {
 
         TextView bookviewtitle = rootview.findViewById(R.id.tv_bookview_title);
         TextView bookviewcontent = rootview.findViewById(R.id.tv_bookview_content);
+        ImageView lockImage = rootview.findViewById(R.id.iv_chapter_locked);
 
-        bookviewtitle.setText("Chapter" + String.valueOf(position + 1) + ": " +  chapters.get(position).getName());
+        bookviewtitle.setText("Chapter " + String.valueOf(position + 1) + ": " +  chapters.get(position).getName());
         bookviewcontent.setText(chapters.get(position).getText());
 
+        if (chapters.get(position).isFinished()) {
+            lockImage.setImageResource(R.drawable.ic_chapter_lock);
+        }
 
         return rootview;
     }

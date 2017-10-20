@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -188,6 +189,10 @@ public class ContributionActivity extends AppCompatActivity {
                 // Create custom dialog object
                 final Dialog dialog = new Dialog(ContributionActivity.this);
                 dialog.setContentView(R.layout.submit_dialog);
+
+                // TODO: If statemetent which checks how many contributions there are in the current chapter, if less than 3 set the checkbox to not visible.
+                //CheckBox cbFinalContribution = findViewById(R.id.cb_final_contribution);
+                //cbFinalContribution.setVisibility(View.GONE); //Might be View.INVISIBLE
 
                 dialog.show();
 

@@ -44,8 +44,8 @@ public class OverviewActivity extends AppCompatActivity {
 
         tvPageCount.setText(String.valueOf(book.getPageCount()));
         tvContributorCount.setText(String.valueOf(book.getAuthorCount()));
-        tvAboutBook.setText(book.getBookOverview());
-        tvBookTitle.setText(book.getBookTitle());
+        tvAboutBook.setText(book.getOverview());
+        tvBookTitle.setText(book.getTitle());
         lvTableOfContents = findViewById(R.id.lv_table_of_contents);
         lvTableOfContents.setAdapter(new OverviewAdapter(this, chapterArray));
 
