@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
@@ -14,7 +15,8 @@
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="@dimen/size_title"
-        />
+        android:layout_toLeftOf="@+id/iv_chapter_locked"
+        android:layout_toStartOf="@+id/iv_chapter_locked" />
 
     <TextView
         android:id="@+id/tv_bookview_content"
@@ -24,4 +26,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="@dimen/size_book_content"/>
+
+    <ImageView
+        android:id="@+id/iv_chapter_locked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_bookview_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/ic_lock_open" />
 </RelativeLayout>
