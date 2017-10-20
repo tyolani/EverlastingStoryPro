@@ -78,18 +78,18 @@
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/btn_add_chapter"
+        android:id="@+id/btn_overview_read_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/overview_add_chapter" />
+        android:text="@string/overview_read_book" />
 
     <ListView
         android:id="@+id/lv_table_of_contents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btn_add_chapter"
+        android:layout_above="@+id/btn_overview_read_book"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tv_overview_table_of_contents" />
 

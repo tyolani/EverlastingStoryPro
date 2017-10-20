@@ -1,9 +1,12 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,6 +48,16 @@ public class OverviewActivity extends AppCompatActivity {
         tvBookTitle.setText(book.getBookTitle());
         lvTableOfContents = findViewById(R.id.lv_table_of_contents);
         lvTableOfContents.setAdapter(new OverviewAdapter(this, chapterArray));
+
+        Button readBook  = (Button) findViewById(R.id.btn_overview_read_book);
+        readBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overviewIntent = new Intent(getApplicationContext(),BookView.class);
+                startActivity(overviewIntent);
+            }
+        });
+
     }
 
 }

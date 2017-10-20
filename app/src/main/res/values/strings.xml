@@ -14,7 +14,7 @@
 
     <string name="overview_pages">Pages:</string>
     <string name="overview_table_of_contents">Table of Contents</string>
-    <string name="overview_add_chapter">Add chapter</string>
+    <string name="overview_read_book">To the book!</string>
     <string name="overview_row_chapter">Chapter</string>
     <string name="overview_contributors_description">Image for contributor count</string>
     <string name="overview_chapter_row_lock_description">Icon indicating that chapter is locked for further contribution</string>
