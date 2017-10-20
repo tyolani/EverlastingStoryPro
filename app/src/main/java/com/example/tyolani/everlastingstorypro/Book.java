@@ -64,16 +64,16 @@ public class Book implements Serializable {
                     //Here we loop through Contributions(textContent,containsImageContent,author)
                     //and create a contribution object from each and every one
                     for (DataSnapshot postSnapshot: snapshot.child("Contributions").getChildren()) {
-                        boolean containImagetest = postSnapshot.child("containsImageContent").getValue(Boolean.class);
-                        Contribution test3 = new Contribution(postSnapshot.child("textContent").toString(), postSnapshot.child("author").toString(), containImagetest);
-                        contributionArrayList.add(test3);
+                        boolean contributionContainImageContent = postSnapshot.child("containsImageContent").getValue(Boolean.class);
+                        Contribution newContribution = new Contribution(postSnapshot.child("textContent").toString(), postSnapshot.child("author").toString(), contributionContainImageContent);
+                        contributionArrayList.add(newContribution);
                     }
 
                     //Create chapters out of the contributions
-                    boolean isFinishedtest = snapshot.child("isFinished").getValue(Boolean.class);
-                    String nametest = snapshot.child("Name").toString();
-                    Chapter newchap = new Chapter(nametest,isFinishedtest,contributionArrayList);
-                    addNewChapter(newchap);
+                    boolean chapterisFinishedVal = snapshot.child("isFinished").getValue(Boolean.class);
+                    String chapterNameVal = snapshot.child("Name").toString();
+                    Chapter newChapter = new Chapter(chapterNameVal,chapterisFinishedVal,contributionArrayList);
+                    addNewChapter(newChapter);
 
                 }
             }
