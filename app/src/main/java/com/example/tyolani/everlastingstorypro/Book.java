@@ -58,14 +58,23 @@ public class Book implements Serializable {
         book_chaptersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //todo: Need to fix how we load the chapter object
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.d("dataSnapshot",String.valueOf(dataSnapshot.getChildrenCount()));
+                    ArrayList<Contribution> contributionArrayList = new ArrayList<Contribution>();
 
-                    Log.d("no chapter",snapshot.child("Name").toString());
+                    //Here we loop through Contributions(textContent,containsImageContent,author)
+                    //and create a contribution object from each and every one
+                    for (DataSnapshot postSnapshot: snapshot.child("Contributions").getChildren()) {
+                        boolean containImagetest = postSnapshot.child("containsImageContent").getValue(Boolean.class);
+                        Contribution test3 = new Contribution(postSnapshot.child("textContent").toString(), postSnapshot.child("author").toString(), containImagetest);
+                        contributionArrayList.add(test3);
+                    }
 
-                    Chapter chapterm = snapshot.getValue(Chapter.class);
-                    addNewChapter(chapterm);
+                    //Create chapters out of the contributions
+                    boolean isFinishedtest = snapshot.child("isFinished").getValue(Boolean.class);
+                    String nametest = snapshot.child("Name").toString();
+                    Chapter newchap = new Chapter(nametest,isFinishedtest,contributionArrayList);
+                    addNewChapter(newchap);
+
                 }
             }
             @Override

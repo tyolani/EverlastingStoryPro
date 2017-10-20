@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,12 +36,9 @@ public class HomeActivity extends AppCompatActivity {
             titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
             genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
             authorCount = (TextView) findViewById(R.id.tv_home_numberContributors);
-
-
             titleView.setText(activeBook.getTitle());
             genreView.setText(activeBook.getGenre());
-            //authorCount.setText(String.valueOf(activeBook.getAuthorCount()));
-
+            authorCount.setText(String.valueOf(activeBook.getAuthorCount()));
             }
         }, delay);
 
