@@ -2,14 +2,13 @@
 package com.example.tyolani.everlastingstorypro;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -18,34 +17,34 @@ public class HomeActivity extends AppCompatActivity {
     TextView genreView;
     TextView authorCount;
     ImageView bookButton;
+    int delay = 1500;
 
-    Book activeBook;
     ArrayList<Book> archivedBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Book testBok = new Book("Book_01");  // HERE IS THE CALL LOADIGN THINGS FROM FIREBASE
-
-        //activeBook = initSomeBook();
-        activeBook = testBok;
         archivedBooks = new ArrayList<Book>();
+        final Book activeBook = new Book("activeBook");
 
-        titleView = (TextView) findViewById(R.id.bookTitle);
-        genreView = (TextView) findViewById(R.id.bookGenre);
-        authorCount = (TextView) findViewById(R.id.numberContributors);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+            titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
+            genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
+            authorCount = (TextView) findViewById(R.id.tv_home_numberContributors);
 
-        titleView.setText(activeBook.getTitle());
-        genreView.setText(activeBook.getGenre());
-        authorCount.setText(Integer.toString(activeBook.getNumberOfAuthors()));
+            titleView.setText(activeBook.getTitle());
+            genreView.setText(activeBook.getGenre());
+            authorCount.setText(String.valueOf(activeBook.getAuthorCount()));
+
+            }
+        }, delay);
 
 
-        //NEED TO REFRESH THE UI HERE AFTER THE THINGS HAVE BEEN LOADED FROM FIREBASE!
-
-        bookButton = findViewById(R.id.imageButton);
+        bookButton = findViewById(R.id.iv_home_imageButton);
         bookButton.setImageResource(R.mipmap.ic_book);
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override

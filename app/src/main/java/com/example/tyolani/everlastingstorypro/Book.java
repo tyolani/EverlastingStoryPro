@@ -2,12 +2,12 @@ package com.example.tyolani.everlastingstorypro;
 
 import android.media.Image;
 import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,11 +43,11 @@ public class Book implements Serializable {
         newContributor();
     }
 
-    public Book(String id) {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
+    public Book(final String id) {
+        mChapters = new ArrayList<Chapter>();
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
         DatabaseReference book_idRef = mDatabase.child(id);
         DatabaseReference book_chaptersRef = book_idRef.child("Chapters");
-        mChapters = new ArrayList<Chapter>();
 
         book_idRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,9 +55,9 @@ public class Book implements Serializable {
                 mTitle = dataSnapshot.child("Title").getValue(String.class);
                 mGenre = dataSnapshot.child("Genre").getValue(String.class);
                 mOverview = dataSnapshot.child("Overview").getValue(String.class);
-
                 mPageCount = dataSnapshot.child("PageCount").getValue(Integer.class);
-                mContributorCount = dataSnapshot.child("ContributorCount").getValue(Integer.class);
+                mContributorCount = dataSnapshot.child("ContributionCount").getValue(Integer.class);
+
             }
 
             @Override
@@ -65,6 +65,7 @@ public class Book implements Serializable {
                 Log.w("onCancelled", databaseError.toException());
             }
         });
+
         book_chaptersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,7 +81,9 @@ public class Book implements Serializable {
                 Log.w("onCancelled", databaseError.toException());
             }
         });
+
     }
+
 
     public Book(){
         // Just an empty book
