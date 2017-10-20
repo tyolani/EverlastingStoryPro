@@ -13,7 +13,7 @@ public class Contribution implements Serializable{
     //
     //--------------------------------- Global Variables ---------------------------------
     //
-    private Image imageContent;
+    private String imageContent;
     private String textContent;
     private boolean containsImageContent;
     private String author;
@@ -27,24 +27,24 @@ public class Contribution implements Serializable{
         author = "";
         containsImageContent = false;
     }
-    public Contribution(Image i, String a){
-        imageContent = i;
-        textContent = "";
-        author = a;
-        containsImageContent = true;
-    }
-    public Contribution(String s, String a){
-        imageContent = null;
-        textContent = s;
-        author = a;
-        containsImageContent = false;
+
+    public Contribution(String content, String author1, boolean containsImage){
+        if(containsImage){
+            imageContent = content;
+            author = author1;
+            containsImageContent = true;
+        }else{
+            textContent = content;
+            author = author1;
+            containsImageContent = false;
+        }
     }
 
 
     //
     //--------------------------------- Methods ---------------------------------
     //
-    public void setImageContent(Image i){
+    public void setImageContent(String i){
         imageContent = i;
         containsImageContent = true;
     }
@@ -55,7 +55,7 @@ public class Contribution implements Serializable{
     public void setAuthor(String a){
         author = a;
     }
-    public Image getImageContent(){
+    public String getImageContent(){
         return imageContent;
     }
     public String getAuthor(){

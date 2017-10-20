@@ -38,7 +38,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
 
         //Mockup for listview adapter, later retrieve chapters from book
         String test = getString(bookView_mockup_bookText);
-        Contribution contrib1 = new Contribution(test,"Elsa Mjoll");
+        Contribution contrib1 = new Contribution(test,"Elsa Mjoll",false);
         Chapter chap1 = new Chapter(contrib1,"Beyond the wall");
         Chapter chap2 = new Chapter(contrib1,"Aftermath");
         Chapter chap3 = new Chapter(contrib1,"Orange County");

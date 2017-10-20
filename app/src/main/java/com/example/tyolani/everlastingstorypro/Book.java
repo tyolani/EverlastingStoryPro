@@ -1,19 +1,17 @@
 package com.example.tyolani.everlastingstorypro;
 
-import android.content.Intent;
 import android.media.Image;
-import android.provider.ContactsContract;
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 /**
  * Created by hedholm on 2017-10-12.
@@ -60,12 +58,6 @@ public class Book implements Serializable {
 
                 mPageCount = dataSnapshot.child("PageCount").getValue(Integer.class);
                 mContributorCount = dataSnapshot.child("ContributorCount").getValue(Integer.class);
-                Log.d("DEBUG", mTitle);
-                Log.d("DEBUG", mGenre);
-                Log.d("DEBUG", mOverview);
-                Log.d("DEBUG", String.valueOf(mPageCount));
-                Log.d("DEBUG", String.valueOf(mContributorCount));
-
             }
 
             @Override
@@ -77,19 +69,9 @@ public class Book implements Serializable {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Log.d("DEBUG", child.getValue().toString());
-
-                    mChapters.add(new Chapter("Test test test"));
-                    mChapters.add(new Chapter("Test 2 test 2 test 2"));
-
-                    //---------------------------------------------------------------------------------------------------------------
-                    //HERE SHOULD BE SOME CONVERSION FROM JSON TO ACTUAL DATA
-                    //WE NEED TO CREATE CHAPTERS BASED ON THE CHILDS, ADD THEM TO THE BOOK'S CHAPTER ARRAY
-                    //ALSO NEED TO CREATE CONTRIBUTIONS BASED ON THE DATA OVER IN THE CHAPTER CONSTRUCTOR -->
-
-                    // Chapter(String newname, boolean done, ArrayList<Contribution> newcontributions)
-                    //---------------------------------------------------------------------------------------------------------------
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Chapter chapterm = snapshot.getValue(Chapter.class);
+                    addNewChapter(chapterm);
                 }
             }
 
@@ -123,9 +105,9 @@ public class Book implements Serializable {
         }
     }
 
-    public boolean createNewChapter(String name, String initialText, String author){
+    public boolean createNewChapter(String name, String initialText, String author, boolean isImage){
         if(getNumberOfOpenChapters() <= 3){
-            Contribution tempContribution = new Contribution(initialText, author);
+            Contribution tempContribution = new Contribution(initialText, author, isImage);
             Chapter tempChapter = new Chapter(tempContribution,name);
             return mChapters.add(tempChapter);
         }
@@ -134,7 +116,7 @@ public class Book implements Serializable {
         }
     }
 
-    public boolean createNewChapter(String name, Image initialImage, String author){
+/*    public boolean createNewChapter(String name, Image initialImage, String author){
         if(getNumberOfOpenChapters() <= 3){
             Contribution tempContribution = new Contribution(initialImage, author);
             Chapter tempChapter = new Chapter(tempContribution,name);
@@ -143,7 +125,7 @@ public class Book implements Serializable {
         else {
             return false;
         }
-    }
+    }*/
 
     public boolean addNewChapter(Chapter chapterToAdd, int index){
         if(getNumberOfOpenChapters() <= 3){
@@ -155,9 +137,9 @@ public class Book implements Serializable {
         }
     }
 
-    public boolean createNewChapter(String name, String initialText, String author, int index){
+    public boolean createNewChapter(String name, String initialText, String author, int index, boolean isImage){
         if(getNumberOfOpenChapters() <= 3){
-            Contribution tempContribution = new Contribution(initialText, author);
+            Contribution tempContribution = new Contribution(initialText, author, isImage);
             Chapter tempChapter = new Chapter(tempContribution,name);
             mChapters.add(index, tempChapter);
             return true;
@@ -167,7 +149,7 @@ public class Book implements Serializable {
         }
     }
 
-    public boolean createNewChapter(String name, Image initialImage, String author, int index){
+/*    public boolean createNewChapter(String name, Image initialImage, String author, int index){
         if(getNumberOfOpenChapters() <= 3){
             Contribution tempContribution = new Contribution(initialImage, author);
             Chapter tempChapter = new Chapter(tempContribution,name);
@@ -177,7 +159,7 @@ public class Book implements Serializable {
         else {
             return false;
         }
-    }
+    }*/
 
     public int getChapterIndex(String chapterName){
         for(int i = 0; i < mChapters.size(); i++){
