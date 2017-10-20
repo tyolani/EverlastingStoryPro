@@ -182,10 +182,10 @@ public class Book implements Serializable {
 
         book_idRef.child("Title").setValue(getTitle());
         book_idRef.child("Genre").setValue(getGenre());
-        book_idRef.child("ContributionCount").setValue(String.valueOf(getContributionCount()));
-        book_idRef.child("AuthorCount").setValue(String.valueOf(getAuthorCount()));
-        book_idRef.child("NumberOfOpenChapters").setValue(String.valueOf(getNumberOfOpenChapters()));
-        book_idRef.child("PageCount").setValue(String.valueOf(getPageCount()));
+        book_idRef.child("ContributionCount").setValue(getContributionCount());
+        book_idRef.child("AuthorCount").setValue(getAuthorCount());
+        book_idRef.child("NumberOfOpenChapters").setValue(getNumberOfOpenChapters());
+        book_idRef.child("PageCount").setValue(getPageCount());
         book_idRef.child("Overview").setValue(getOverview());
 
         for(int i = 0; i < getChapters().size(); i ++){
@@ -198,7 +198,26 @@ public class Book implements Serializable {
                 chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("textContent").setValue(getChapters().get(i).getContributions().get(j).getTextContent());
                 chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("imageContent").setValue(getChapters().get(i).getContributions().get(j).getImageContent());
                 chapter_idRef.child(String.valueOf(i)).child("Contributions").child(String.valueOf(j)).child("containsImageContent").setValue(getChapters().get(i).getContributions().get(j).isImageContribution());
-             }
+            }
+        }
+    }
+    public void saveChapter(int index, Chapter ch,String reference){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
+        DatabaseReference book_idRef = mDatabase.child(reference);
+        DatabaseReference chapter_idRef = book_idRef.child("Chapters");
+
+        int x = index;
+        getChapters().add(x,ch);
+
+        chapter_idRef.child(String.valueOf(x)).child("Name").setValue(ch.getName());
+        chapter_idRef.child(String.valueOf(x)).child("isFinished").setValue(ch.isFinished());
+
+        for(int j = 0; j < ch.getContributions().size(); j++){
+
+            chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("author").setValue(ch.getContributions().get(j).getAuthor());
+            chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("textContent").setValue(ch.getContributions().get(j).getTextContent());
+            chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("imageContent").setValue(ch.getContributions().get(j).getImageContent());
+            chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("containsImageContent").setValue(ch.getContributions().get(j).isImageContribution());
         }
     }
 }

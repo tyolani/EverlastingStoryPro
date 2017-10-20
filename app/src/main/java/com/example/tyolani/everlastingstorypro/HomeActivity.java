@@ -32,7 +32,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
         activeBook = initSomeBook();
-        //activeBook = testBok;
         archivedBooks = new ArrayList<Book>();
 
         titleView = (TextView) findViewById(R.id.bookTitle);
@@ -44,7 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         authorCount.setText(Integer.toString(activeBook.getAuthorCount()));
 
         activeBook.saveBookToFirebase("activeBook");
-
 
         //NEED TO REFRESH THE UI HERE AFTER THE THINGS HAVE BEEN LOADED FROM FIREBASE!
 
@@ -64,6 +62,8 @@ public class HomeActivity extends AppCompatActivity {
     //ONLY FOR TESTING PURPOSES!
     public Book initSomeBook(){
         Book tempBook = new Book("Action adventure", "Endless dreams");
+        tempBook.setOverview("Some overview depicturing the contents of the book.");
+
         ArrayList<Contribution> contch1 = new ArrayList<Contribution>();
         contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
         contch1.add(new Contribution("dfghijoklpsdfguio","Kevin", false));
@@ -103,5 +103,17 @@ public class HomeActivity extends AppCompatActivity {
         tempBook.addNewChapter(ch3);
 
         return tempBook;
+    }
+    public Chapter initSomeChapter(){
+
+        ArrayList<Contribution> contch2 = new ArrayList<Contribution>();
+        contch2.add(new Contribution("dfghijoklpsdfguio","Pelle", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Pelle", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Pelle", false));
+        contch2.add(new Contribution("dfghijoklpsdfguio","Pelle", false));
+        Chapter testChapter = new Chapter("FromTestChapterFunction", true, contch2);
+        testChapter.closeChapter();
+
+        return testChapter;
     }
 }
