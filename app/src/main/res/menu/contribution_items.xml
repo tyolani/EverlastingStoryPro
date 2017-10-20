@@ -8,4 +8,11 @@
         app:showAsAction="always"
         />
 
+    <item
+        android:id="@+id/action_contribution_submit"
+        android:icon="@drawable/ic_submit"
+        android:title="Submit"
+        app:showAsAction="always"
+        />
+
 </menu>

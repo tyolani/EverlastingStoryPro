@@ -9,6 +9,9 @@
     <string name="bookView_dialog_btnTxt_after">Add After</string>
     <string name="bookView_dialog_tv">"Choose to add a new chapter before or after \n Chapter"</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="contribution_submit">Are you sure you want to submit?</string>
     <string name="contribution_addTextChapter">\n Add text to your chapter</string>
     <string name="contribution_addTextParagraph">\n" Add text to your paragraph</string>
 

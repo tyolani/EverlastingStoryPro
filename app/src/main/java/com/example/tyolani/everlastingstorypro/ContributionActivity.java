@@ -1,5 +1,6 @@
 package com.example.tyolani.everlastingstorypro;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -125,6 +128,15 @@ public class ContributionActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (action.equals("addParagraph")){
+            MenuItem addImage = menu.findItem(R.id.action_contribution_addImage);
+            addImage.setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 1: {
@@ -171,6 +183,34 @@ public class ContributionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_contribution_addImage:
+                return true;
+            case R.id.action_contribution_submit:
+                // Create custom dialog object
+                final Dialog dialog = new Dialog(ContributionActivity.this);
+                dialog.setContentView(R.layout.submit_dialog);
+
+                dialog.show();
+
+                Button noBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_no);
+                // if no btn is clicked
+                noBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+
+                Button yesBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_yes);
+                // if yes btn is clicked
+                yesBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Close dialog
+                        dialog.dismiss();
+                        // TODO: Save the contribution
+                    }
+                });
                 return true;
             default:
                 // the user's action was not recognized
