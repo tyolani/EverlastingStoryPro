@@ -17,7 +17,6 @@ public class HomeActivity extends AppCompatActivity {
     TextView genreView;
     TextView authorCount;
     ImageView bookButton;
-    int delay = 2000;
 
     ArrayList<Book> archivedBooks;
 

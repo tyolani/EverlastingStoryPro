@@ -6,29 +6,29 @@
         android:id="@+id/action_add_chapter"
         android:icon="@drawable/ic_add"
         android:title="@string/bookView_action_add_chapter"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:orderInCategory="1"/>
 
     <item
         android:id="@+id/action_add_paragraph"
         android:icon="@drawable/ic_paragraph"
         android:title="@string/bookView_action_add_paragraph"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:orderInCategory="2"/>
 
     <item
         android:id="@+id/action_add_image"
         android:icon="@drawable/ic_add_image"
         android:title="@string/bookView_action_add_image"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:orderInCategory="3"/>
 
-    <item
+<!--    <item
         android:id="@+id/action_final_addition"
         android:icon="@drawable/ic_lock_open"
         android:title="@string/bookView_action_final_addition"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:enabled="false"
-        android:orderInCategory="4"/>
+        android:orderInCategory="4"/>-->
 
 </menu>

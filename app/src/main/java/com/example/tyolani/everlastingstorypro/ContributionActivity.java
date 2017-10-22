@@ -19,11 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 
@@ -66,10 +64,8 @@ public class ContributionActivity extends AppCompatActivity {
             chapterPosition = extraImage;
         }
 
-        Log.d("TROLOLAction: ",""+action);
 
         if(action.equals("addChapter")) {
-            Log.d("TROLOLOLOL addChapter","");
             setContentView(R.layout.contribution_add_chapter);
             Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addChapter);
             setSupportActionBar(menu);
@@ -88,7 +84,6 @@ public class ContributionActivity extends AppCompatActivity {
             editTextContent.append(getString(contribution_addTextChapter));
 
         }else if(action.equals("addParagraph")) {
-            Log.d("TROLOLOLOL addParagraph","");
             setContentView(R.layout.contribution_add_paragraph);
             Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addParagraph);
             setSupportActionBar(menu);
@@ -144,12 +139,8 @@ public class ContributionActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission granted and now can proceed
-
-                    Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
-
                 } else {
                     // permission denied
-                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
                 }
             }
         }

@@ -32,8 +32,9 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_view);
 
-        Toolbar menu = (Toolbar) findViewById(R.id.menu_bookView);
+        Toolbar menu = findViewById(R.id.menu_bookView);
         setSupportActionBar(menu);
+        getSupportActionBar().setTitle("");
 
 
         final Book activeBook = new Book("activeBook");
@@ -72,53 +73,71 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
             case R.id.action_add_chapter:
 
                 // Create custom dialog object
-                final Dialog dialog = new Dialog(BookView.this);
-                dialog.setContentView(R.layout.bookview_dialog);
+                final Dialog dialogChapter = new Dialog(BookView.this);
+                if(chapters.get(firstVisibleRow).isFinished()){
+                    dialogChapter.setContentView(R.layout.bookview_dialog_isfinished);
+                    dialogChapter.show();
+                }else {
+                    dialogChapter.setContentView(R.layout.bookview_dialog);
+                    //set textview
+                    TextView tvBookviewDialog = (TextView) dialogChapter.findViewById(R.id.tv_bookview_dialog);
+                    tvBookviewDialog.setText(getString(bookView_dialog_tv) + (firstVisibleRow+1) +": " + chapters.get(firstVisibleRow).getName());
+                    dialogChapter.show();
 
-                //set textview
-                TextView tvBookviewDialog = (TextView) dialog.findViewById(R.id.tv_bookview_dialog);
-                tvBookviewDialog.setText(getString(bookView_dialog_tv) + (firstVisibleRow+1) +": " + chapters.get(firstVisibleRow).getName());
-                dialog.show();
+                    Button beforeBtn = (Button) dialogChapter.findViewById(R.id.btn_bookview_dialog_before);
+                    // if before btn is clicked
+                    beforeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Close dialog
+                            dialogChapter.dismiss();
+                            Intent contributionIntent = new Intent(getApplicationContext(),ContributionActivity.class);
+                            contributionIntent.putExtra("addChapter", "before");
+                            contributionIntent.putExtra("position",firstVisibleRow);
+                            startActivity(contributionIntent);
+                        }
+                    });
 
-                Button beforeBtn = (Button) dialog.findViewById(R.id.btn_bookview_dialog_before);
-                // if before btn is clicked
-                beforeBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Close dialog
-                        dialog.dismiss();
-                        Intent contributionIntent = new Intent(getApplicationContext(),ContributionActivity.class);
-                        contributionIntent.putExtra("addChapter", "before");
-                        contributionIntent.putExtra("position",firstVisibleRow);
-                        startActivity(contributionIntent);
-                    }
-                });
-
-                Button afterBtn = (Button) dialog.findViewById(R.id.btn_bookview_dialog_after);
-                // if after btn is clicked
-                afterBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Close dialog
-                        dialog.dismiss();
-                        Intent contributionIntent = new Intent(getApplicationContext(),ContributionActivity.class);
-                        contributionIntent.putExtra("addChapter", "after");
-                        contributionIntent.putExtra("position",firstVisibleRow);
-                        startActivity(contributionIntent);
-                    }
-                });
+                    Button afterBtn = (Button) dialogChapter.findViewById(R.id.btn_bookview_dialog_after);
+                    // if after btn is clicked
+                    afterBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Close dialog
+                            dialogChapter.dismiss();
+                            Intent contributionIntent = new Intent(getApplicationContext(),ContributionActivity.class);
+                            contributionIntent.putExtra("addChapter", "after");
+                            contributionIntent.putExtra("position",firstVisibleRow);
+                            startActivity(contributionIntent);
+                        }
+                    });
+                }
                 return true;
             case R.id.action_add_paragraph:
-                Intent contributionParagraphIntent = new Intent(getApplicationContext(),ContributionActivity.class);
-                contributionParagraphIntent.putExtra("addParagraph", firstVisibleRow);
-                contributionParagraphIntent.putExtra("addP", "paragraph");
-                startActivity(contributionParagraphIntent);
+                // Create custom dialog object
+                Dialog dialogParagraph = new Dialog(BookView.this);
+                if(chapters.get(firstVisibleRow).isFinished()){
+                    dialogParagraph.setContentView(R.layout.bookview_dialog_isfinished);
+                    dialogParagraph.show();
+                }else {
+                    Intent contributionParagraphIntent = new Intent(getApplicationContext(), ContributionActivity.class);
+                    contributionParagraphIntent.putExtra("addParagraph", firstVisibleRow);
+                    contributionParagraphIntent.putExtra("addP", "paragraph");
+                    startActivity(contributionParagraphIntent);
+                }
                 return true;
             case R.id.action_add_image:
-                Intent contributionImageIntent = new Intent(getApplicationContext(),ContributionActivity.class);
-                contributionImageIntent.putExtra("addImage", firstVisibleRow);
-                contributionImageIntent.putExtra("addI", "image");
-                startActivity(contributionImageIntent);
+                // Create custom dialog object
+                Dialog dialogImage = new Dialog(BookView.this);
+                if(chapters.get(firstVisibleRow).isFinished()){
+                    dialogImage.setContentView(R.layout.bookview_dialog_isfinished);
+                    dialogImage.show();
+                }else {
+                    Intent contributionImageIntent = new Intent(getApplicationContext(), ContributionActivity.class);
+                    contributionImageIntent.putExtra("addImage", firstVisibleRow);
+                    contributionImageIntent.putExtra("addI", "image");
+                    startActivity(contributionImageIntent);
+                }
                 return true;
             default:
                 // the user's action was not recognized
@@ -131,10 +150,6 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {
         firstVisibleRow = lvBookContent.getFirstVisiblePosition();
-        int lastVisibleRow = lvBookContent.getLastVisiblePosition();
-        for(int i = firstVisibleRow; i <= lastVisibleRow; i++) {
-            //Log.d("onScroll()..Position", i+"");
-        }
     }
 
     @Override
