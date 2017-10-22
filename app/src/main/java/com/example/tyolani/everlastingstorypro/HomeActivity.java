@@ -17,7 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView genreView;
     TextView authorCount;
     ImageView bookButton;
-    int delay = 1500;
+    int delay = 2000;
 
     ArrayList<Book> archivedBooks;
 
@@ -28,19 +28,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
         archivedBooks = new ArrayList<Book>();
-        final Book activeBook = new Book("activeBook");
+        final Book book = (Book) getIntent().getExtras().getSerializable("book");
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-            titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
-            genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
-            authorCount = (TextView) findViewById(R.id.tv_home_numberContributors);
-            titleView.setText(activeBook.getTitle());
-            genreView.setText(activeBook.getGenre());
-            authorCount.setText(String.valueOf(activeBook.getAuthorCount()));
-            }
-        }, delay);
+        titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
+        genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
+        authorCount = (TextView) findViewById(R.id.tv_home_numberContributors);
+        titleView.setText(book.getTitle());
+        genreView.setText(book.getGenre());
+        authorCount.setText(String.valueOf(book.getAuthorCount()));
 
 
         bookButton = findViewById(R.id.iv_home_imageButton);
@@ -50,12 +45,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, OverviewActivity.class);
-                intent.putExtra("book", activeBook);
+                intent.putExtra("book", book);
                 startActivity(intent);
             }
         });
 
     }
+
+
     //activeBook.saveBookToFirebase("activeBook");
     //ONLY FOR TESTING PURPOSES!
     public Book initSomeBook(){
