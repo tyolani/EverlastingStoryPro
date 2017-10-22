@@ -8,8 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@drawable/main_gradient</item>
         <item name="android:textColor">@color/closeToBlack</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
 </resources>

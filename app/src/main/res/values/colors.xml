@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFEB3B</color>
-    <color name="colorPrimaryDark">#FDD835</color>
-    <color name="colorAccent">#FFF176</color>
-    <color name="gradientStart">#FFF9C4</color>
-    <color name="gradientMiddle">#FFF176</color>
-    <color name="gradientEnd">#FFEB3B</color>
+    <color name="colorPrimary">#469990</color>
+    <color name="colorPrimaryDark">#2B857B</color>
+    <color name="colorAccent">#147268</color>
+    <color name="gradientStart">#cff7f2</color>
+    <color name="gradientMiddle">#97dcd5</color>
+    <color name="gradientEnd">#6acfc4</color>
     <color name="closeToBlack">#333333</color>
-    <color name="colorReadWrite">#FFF9C4</color>
+    <color name="closeToWhite">#FFFFF9</color>
+    <color name="colorReadWrite">#FFFAD3</color>
+    <color name="colorButtons">#FFDEA0</color>
 </resources>

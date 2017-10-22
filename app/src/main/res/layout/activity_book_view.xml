@@ -56,8 +56,8 @@
             android:layout_marginBottom="25dp"
             android:background="@android:color/transparent"
             android:gravity="center"
-            android:textSize="@dimen/size_title"
-            android:text="@string/bookView_spinner_text"/>
+            android:text="@string/bookView_spinner_text"
+            android:textSize="@dimen/size_title" />
 
     </RelativeLayout>
 
