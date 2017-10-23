@@ -123,6 +123,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
                     Intent contributionParagraphIntent = new Intent(getApplicationContext(), ContributionActivity.class);
                     contributionParagraphIntent.putExtra("addParagraph", firstVisibleRow);
                     contributionParagraphIntent.putExtra("addP", "paragraph");
+                    contributionParagraphIntent.putExtra("chapters", chapters.get(firstVisibleRow));
                     startActivity(contributionParagraphIntent);
                 }
                 return true;

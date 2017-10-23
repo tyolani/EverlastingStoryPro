@@ -16,8 +16,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="contribution_submit">Are you sure you want to submit?</string>
-    <string name="contribution_addTextChapter">\n Add text to your chapter</string>
-    <string name="contribution_addTextParagraph">\n" Add text to your paragraph</string>
+    <string name="contribution_addTextChapter">Add text to your chapter</string>
+    <string name="contribution_addTextParagraph">Add text to your new paragraph</string>
     <string name="contribution_final_contribution">Finish chapter?</string>
 
     <string name="overview_pages">Pages:</string>

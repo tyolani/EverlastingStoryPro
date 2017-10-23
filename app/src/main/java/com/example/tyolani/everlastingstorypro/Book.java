@@ -63,15 +63,26 @@ public class Book implements Serializable {
 
                     //Here we loop through Contributions(textContent,containsImageContent,author)
                     //and create a contribution object from each and every one
+                    boolean check = false;
                     for (DataSnapshot postSnapshot: snapshot.child("Contributions").getChildren()) {
-                        boolean contributionContainImageContent = postSnapshot.child("containsImageContent").getValue(Boolean.class);
-                        Contribution newContribution = new Contribution(postSnapshot.child("textContent").getValue().toString(), postSnapshot.child("author").getValue().toString(), contributionContainImageContent);
+        /*                Log.d("containsImageContent",String.valueOf(postSnapshot.child("containsImageContent").getValue()));
+                        Log.d("textContent",String.valueOf(postSnapshot.child("textContent").getValue()));
+                        Log.d("author",String.valueOf(postSnapshot.child("author").getValue()));*/
+
+                        String contributionContainImageContent = String.valueOf(postSnapshot.child("containsImageContent").getValue());
+                        if(contributionContainImageContent == "false" || contributionContainImageContent == null){
+                            check = false;
+                        }if(contributionContainImageContent == "true"){
+                            check = true;
+                        }
+
+                        Contribution newContribution = new Contribution(String.valueOf(postSnapshot.child("textContent").getValue()),String.valueOf(postSnapshot.child("author").getValue()), check);
                         contributionArrayList.add(newContribution);
                     }
 
                     //Create chapters out of the contributions
-                    boolean chapterisFinishedVal = snapshot.child("isFinished").getValue(Boolean.class);
-                    String chapterNameVal = snapshot.child("Name").getValue().toString();
+                    boolean chapterisFinishedVal = Boolean.valueOf(snapshot.child("isFinished").getValue(Boolean.class));
+                    String chapterNameVal = String.valueOf(snapshot.child("Name").getValue());
                     Chapter newChapter = new Chapter(chapterNameVal,chapterisFinishedVal,contributionArrayList);
                     addNewChapter(newChapter);
 
@@ -231,7 +242,7 @@ public class Book implements Serializable {
 
             chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("author").setValue(ch.getContributions().get(j).getAuthor());
             chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("textContent").setValue(ch.getContributions().get(j).getTextContent());
-            chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("imageContent").setValue(ch.getContributions().get(j).getImageContent());
+            //chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("imageContent").setValue(ch.getContributions().get(j).getImageContent());
             chapter_idRef.child(String.valueOf(x)).child("Contributions").child(String.valueOf(j)).child("containsImageContent").setValue(ch.getContributions().get(j).isImageContribution());
         }
     }
