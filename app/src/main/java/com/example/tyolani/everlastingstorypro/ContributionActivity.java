@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 
@@ -19,8 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
@@ -36,6 +39,8 @@ public class ContributionActivity extends AppCompatActivity {
     private String chapterBeforeOrAfter;
     private int chapterPosition;
     private static int RESULT_LOAD_IMAGE = 1;
+    private CheckBox cbFinalContribution;
+    final Book activeBook = new Book("activeBook");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,7 @@ public class ContributionActivity extends AppCompatActivity {
 
         if(action.equals("addChapter")) {
             setContentView(R.layout.contribution_add_chapter);
-            Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addChapter);
+            Toolbar menu = findViewById(R.id.menu_contribution_addChapter);
             setSupportActionBar(menu);
 
             EditText editTextChapter = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
@@ -84,29 +89,42 @@ public class ContributionActivity extends AppCompatActivity {
             editTextContent.append(getString(contribution_addTextChapter));
 
         }else if(action.equals("addParagraph")) {
+            final Chapter chapter = (Chapter) getIntent().getExtras().getSerializable("chapters");
             setContentView(R.layout.contribution_add_paragraph);
-            Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addParagraph);
+            Toolbar menu = findViewById(R.id.menu_contribution_addParagraph);
             setSupportActionBar(menu);
 
-            //get right chapter and load it
             TextView textViewParagraphTitle = (TextView) findViewById(R.id.tv_contribution_add_paragraph_title);
-            //todo retrieve chapter title from database according to position
-            textViewParagraphTitle.setText("Chapter" + (chapterPosition + 1) + ": ");
             textViewParagraphTitle.setTypeface(textViewParagraphTitle.getTypeface(), Typeface.BOLD);
-
-            //todo retrieve chapter contributions from database according to position
             TextView textViewParagraphContent = (TextView) findViewById(R.id.tv_contribution_add_paragraph_content);
-            textViewParagraphContent.setText(getString(bookView_mockup_bookText));
+
+            textViewParagraphTitle.setText("Chapter" + (chapterPosition + 1) + ": " + chapter.getName());
+            //textViewParagraphContent.setText(chapter.getText());
+
+            for (int i = 0; i<chapter.getContributions().size(); i++){
+                textViewParagraphContent.append(chapter.getContributions().get(i).getTextContent());
+            }
 
             //new paragraph
-            EditText editTextNewParagraph = (EditText) findViewById(R.id.et_contribution_add_paragraph_new_content);
+            EditText editTextNewParagraph = findViewById(R.id.et_contribution_add_paragraph_new_content);
+            editTextNewParagraph.setTypeface(textViewParagraphTitle.getTypeface(), Typeface.BOLD);
             editTextNewParagraph.append(getString(contribution_addTextParagraph));
 
+            //Scroll to the bottom of the screen when opening
+            final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView_contribution_add_paragraph));
+            scrollview.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+                }
+            });
 
         }else if (action.equals("addImage")) {
             setContentView(R.layout.contribution_add_image);
-            Toolbar menu = (Toolbar) findViewById(R.id.menu_contribution_addImage);
+            Toolbar menu = findViewById(R.id.menu_contribution_addImage);
             setSupportActionBar(menu);
+
+
 
             TextView textViewImageTitle = (TextView) findViewById(R.id.tv_contribution_add_image_title);
             textViewImageTitle.setTypeface(textViewImageTitle.getTypeface(), Typeface.BOLD);
@@ -131,6 +149,8 @@ public class ContributionActivity extends AppCompatActivity {
         }
         return super.onPrepareOptionsMenu(menu);
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -169,7 +189,6 @@ public class ContributionActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.contribution_items, menu);
         return true;
     }
-
     //Handling actions from the menu_bookView toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -179,13 +198,23 @@ public class ContributionActivity extends AppCompatActivity {
             case R.id.action_contribution_submit:
                 // Create custom dialog object
                 final Dialog dialog = new Dialog(ContributionActivity.this);
+                final EditText editTextNewParagraph = findViewById(R.id.et_contribution_add_paragraph_new_content);
+                final Chapter chapter = (Chapter) getIntent().getExtras().getSerializable("chapters");
+
                 dialog.setContentView(R.layout.submit_dialog);
+                //get where the user is coming from (add paragraph, image or chapter)
+                if(action.equals("addParagraph")){
+                    //find what the user added to the edit text
+                    cbFinalContribution = findViewById(R.id.cb_final_contribution);
 
-                // TODO: If statemetent which checks how many contributions there are in the current chapter, if less than 3 set the checkbox to not visible.
-                //CheckBox cbFinalContribution = findViewById(R.id.cb_final_contribution);
-                //cbFinalContribution.setVisibility(View.GONE); //Might be View.INVISIBLE
-
-                dialog.show();
+                    // If statemetent which checks how many contributions there are in the current chapter, if less than 3 set the checkbox to not visible.
+                    if(chapter.getNumberOfContributions() > 3){
+                        Log.d("contribuitons less 3 ", chapter.getNumberOfContributions()+"");
+                        //todo hide checkbox; not working atm
+                        //cbFinalContribution.setVisibility(CheckBox.VISIBLE);
+                    }
+                    dialog.show();
+                }
 
                 Button noBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_no);
                 // if no btn is clicked
@@ -202,9 +231,14 @@ public class ContributionActivity extends AppCompatActivity {
                 yesBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Close dialog
-                        dialog.dismiss();
-                        // TODO: Save the contribution
+                    //// TODO: check if checkbox is checked
+                    dialog.dismiss();
+                    final Contribution newContribution = new Contribution(String.valueOf(" \n"+editTextNewParagraph.getText())+" \n","author"+chapter.getNumberOfContributions()+"", false);
+                    chapter.addContribution(newContribution);
+                    activeBook.saveChapter(chapterPosition,chapter,"activeBook");
+                    Intent bookview = new Intent(getApplicationContext(), BookView.class);
+                    startActivity(bookview);
+                    editTextNewParagraph.getText().clear();
                     }
                 });
                 return true;

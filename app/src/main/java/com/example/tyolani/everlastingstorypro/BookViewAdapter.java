@@ -24,9 +24,6 @@ public class BookViewAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
-
-
     @Override
     public int getCount() {
         return chapters.size();
@@ -52,8 +49,9 @@ public class BookViewAdapter extends BaseAdapter {
         ImageView lockImage = rootview.findViewById(R.id.iv_chapter_locked);
 
         bookviewtitle.setText("Chapter " + String.valueOf(position + 1) + ": " +  chapters.get(position).getName());
-        bookviewcontent.setText(chapters.get(position).getText());
-
+        for (int i = 0; i<chapters.get(position).getContributions().size(); i++){
+            bookviewcontent.append(chapters.get(position).getContributions().get(i).getTextContent());
+        }
         if (chapters.get(position).isFinished()) {
             lockImage.setImageResource(R.drawable.ic_chapter_lock);
         }
