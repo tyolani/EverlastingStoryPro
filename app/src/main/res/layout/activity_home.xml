@@ -56,34 +56,14 @@
         android:layout_below="@+id/iv_home_imageButton"
         android:layout_toRightOf="@+id/tv_home_bookGenre"
         android:layout_toEndOf="@+id/tv_home_bookGenre" />
+
     <in.goodiebag.carouselpicker.CarouselPicker
         android:id="@+id/carouselPicker1"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:background="#DDD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_home_personImage"
-        app:items_visible="three"
-        />
-
-    <in.goodiebag.carouselpicker.CarouselPicker
-        android:id="@+id/carouselPicker2"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#DDD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:items_visible="three"
-        />
-
-    <in.goodiebag.carouselpicker.CarouselPicker
-        android:id="@+id/carouselPicker3"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#DDD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:items_visible="three"
         />
 
