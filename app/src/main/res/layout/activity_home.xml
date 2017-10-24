@@ -54,9 +54,9 @@
 
     <ImageView
         android:id="@+id/iv_home_personImage"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_contributor"
         android:layout_below="@+id/iv_home_imageButton"
         android:layout_toRightOf="@+id/tv_home_bookGenre"
         android:layout_toEndOf="@+id/tv_home_bookGenre" />
