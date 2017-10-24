@@ -2,14 +2,16 @@
 package com.example.tyolani.everlastingstorypro;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import in.goodiebag.carouselpicker.CarouselPicker;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,6 +21,8 @@ public class HomeActivity extends AppCompatActivity {
     ImageView bookButton;
 
     ArrayList<Book> archivedBooks;
+
+    CarouselPicker carouselPicker1,carouselPicker2,carouselPicker3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,34 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        carouselPicker1 = (CarouselPicker)findViewById(R.id.carouselPicker1);
+        //carouselPicker2 = (CarouselPicker)findViewById(R.id.carouselPicker2);
+        //carouselPicker3 = (CarouselPicker)findViewById(R.id.carouselPicker3);
+
+        //Carousel 1 with all images
+        List<CarouselPicker.PickerItem> itemsImages = new ArrayList<>();
+        itemsImages.add(new CarouselPicker.DrawableItem(R.mipmap.kingdom));
+        itemsImages.add(new CarouselPicker.DrawableItem(R.mipmap.ic_launcher_round));
+        itemsImages.add(new CarouselPicker.DrawableItem(R.mipmap.kingdom));
+        CarouselPicker.CarouselViewAdapter imageAdapter = new CarouselPicker.CarouselViewAdapter(this,itemsImages,0);
+        carouselPicker1.setAdapter(imageAdapter);
+
+        //Carousel 2 with all text
+        /*List<CarouselPicker.PickerItem> textItems = new ArrayList<>();
+        textItems.add(new CarouselPicker.TextItem("One",20)); // 20 is text size (sp)
+        textItems.add(new CarouselPicker.TextItem("Two",20)); // 20 is text size (sp)
+        textItems.add(new CarouselPicker.TextItem("Three",20)); // 20 is text size (sp)
+        CarouselPicker.CarouselViewAdapter textAdapter = new CarouselPicker.CarouselViewAdapter(this,textItems,0);
+        carouselPicker2.setAdapter(textAdapter);*/
+
+        //Carousel 2 with image and text
+        /*List<CarouselPicker.PickerItem> mixItems = new ArrayList<>();
+        mixItems.add(new CarouselPicker.TextItem("One",20)); // 20 is text size (sp)
+        mixItems.add(new CarouselPicker.DrawableItem(R.mipmap.ic_launcher_round));
+        mixItems.add(new CarouselPicker.TextItem("Three",20)); // 20 is text size (sp)
+        mixItems.add(new CarouselPicker.DrawableItem(R.mipmap.ic_launcher));
+        CarouselPicker.CarouselViewAdapter mixAdapter = new CarouselPicker.CarouselViewAdapter(this,mixItems,0);
+        carouselPicker3.setAdapter(mixAdapter);*/
     }
 
 
