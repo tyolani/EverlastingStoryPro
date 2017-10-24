@@ -41,7 +41,6 @@ public class ContributionActivity extends AppCompatActivity {
     private String chapterBeforeOrAfter;
     private int chapterPosition;
     private static int RESULT_LOAD_IMAGE = 1;
-    private CheckBox cbFinalContribution;
     final Book activeBook = new Book("activeBook");
 
     @Override
@@ -258,6 +257,8 @@ public class ContributionActivity extends AppCompatActivity {
                     }
                 });
                 }else if (action.equals("addChapter")){
+                    CheckBox checkBox = (CheckBox)dialog.findViewById(R.id.cb_final_contribution);
+                    checkBox.setVisibility(View.INVISIBLE);
                     dialog.show();
 
                     Button noBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_no);
@@ -312,7 +313,6 @@ public class ContributionActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     public void removeBook(String id) {
         DatabaseReference db_node = FirebaseDatabase.getInstance().getReference().child("Book");

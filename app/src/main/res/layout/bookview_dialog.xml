@@ -6,6 +6,7 @@
                 android:paddingLeft="16dp"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
+                android:background="@color/colorPrimary"
                 >
 
     <TextView
@@ -27,7 +28,8 @@
         android:textSize="@dimen/size_book_content"
         android:textStyle="italic"
         android:gravity="center"
-        android:text="@string/bookView_dialog_btnTxt_before"/>
+        android:text="@string/bookView_dialog_btnTxt_before"
+        android:background="@drawable/button_layout"/>
 
     <Button
         android:id="@+id/btn_bookview_dialog_after"
@@ -41,5 +43,6 @@
         android:textSize="@dimen/size_book_content"
         android:textStyle="italic"
         android:gravity="center"
-        android:text="@string/bookView_dialog_btnTxt_after"/>
+        android:text="@string/bookView_dialog_btnTxt_after"
+        android:background="@drawable/button_layout"/>
 </RelativeLayout>
