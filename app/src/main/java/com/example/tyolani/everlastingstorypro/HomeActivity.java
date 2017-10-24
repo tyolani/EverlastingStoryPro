@@ -4,6 +4,7 @@ package com.example.tyolani.everlastingstorypro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
 
         archivedBooks = new ArrayList<Book>();
         final Book book = (Book) getIntent().getExtras().getSerializable("book");
+
+        Log.w("BOOK", book.getGenre());
 
         titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
         genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
