@@ -50,5 +50,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tv_submit_dialog"
-        android:text="@string/contribution_final_contribution" />
+        android:text="@string/contribution_final_contribution"
+        android:visibility="visible"/>
 </RelativeLayout>

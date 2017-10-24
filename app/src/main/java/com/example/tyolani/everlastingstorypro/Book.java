@@ -230,7 +230,7 @@ public class Book implements Serializable {
             }
         }
     }
-    public void saveChapter(int index, Chapter ch,String reference){
+    public void saveChapter(int index, Chapter ch,String reference, boolean isfinished){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Book");
         DatabaseReference book_idRef = mDatabase.child(reference);
         DatabaseReference chapter_idRef = book_idRef.child("Chapters");
@@ -240,7 +240,7 @@ public class Book implements Serializable {
 
 
         chapter_idRef.child(String.valueOf(x)).child("Name").setValue(ch.getName());
-        chapter_idRef.child(String.valueOf(x)).child("isFinished").setValue(ch.isFinished());
+        chapter_idRef.child(String.valueOf(x)).child("isFinished").setValue(isfinished);
 
         for(int j = 0; j < ch.getContributions().size(); j++){
 

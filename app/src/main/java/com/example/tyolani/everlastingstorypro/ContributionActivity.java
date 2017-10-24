@@ -88,7 +88,6 @@ public class ContributionActivity extends AppCompatActivity {
                 textTextChapter.append("Chapter" + (chapterPosition + 1) + ": ");
             }
             EditText editTextChapterTitle = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
-            //editTextChapterTitle.setTypeface(editTextChapterTitle.getTypeface(), Typeface.BOLD);
             editTextChapterTitle.setText("Write a title!");
 
             EditText editTextContent = (EditText) findViewById(R.id.et_contribution_add_chapter_new_content);
@@ -107,7 +106,6 @@ public class ContributionActivity extends AppCompatActivity {
             TextView textViewParagraphContent = (TextView) findViewById(R.id.tv_contribution_add_paragraph_content);
 
             textViewParagraphTitle.setText("Chapter" + (chapterPosition + 1) + ": " + chapter.getName());
-            //textViewParagraphContent.setText(chapter.getText());
 
             for (int i = 0; i<chapter.getContributions().size(); i++){
                 textViewParagraphContent.append(chapter.getContributions().get(i).getTextContent());
@@ -219,11 +217,12 @@ public class ContributionActivity extends AppCompatActivity {
                     //find what the user added to the edit text
 
                     // If statemetent which checks how many contributions there are in the current chapter, if less than 3 set the checkbox to not visible.
-                    if(chapter.getNumberOfContributions() > 3){
+                    if(chapter.getNumberOfContributions() < 3){
                         Log.d("contribuitons less 3 ", chapter.getNumberOfContributions()+"");
-                        //todo hide checkbox; not working atm
-                        //cbFinalContribution.setVisibility(CheckBox.VISIBLE);
+                        CheckBox checkBox = (CheckBox)dialog.findViewById(R.id.cb_final_contribution);
+                        checkBox.setVisibility(View.INVISIBLE);
                     }
+
                     dialog.show();
 
 
@@ -242,11 +241,17 @@ public class ContributionActivity extends AppCompatActivity {
                 yesBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    //// TODO: check if checkbox is checked
+                    Boolean isfin = false;
+                    CheckBox checkBox = (CheckBox)dialog.findViewById(R.id.cb_final_contribution);
+
+                    if(checkBox.isChecked()){
+                        isfin = true;
+                    }
                     dialog.dismiss();
                     final Contribution newContribution = new Contribution(String.valueOf(" \n \n"+editTextNewParagraph.getText())+" \n","author"+chapter.getNumberOfContributions()+"", false);
                     chapter.addContribution(newContribution);
-                    activeBook.saveChapter(chapterPosition,chapter,"activeBook");
+
+                    activeBook.saveChapter(chapterPosition,chapter,"activeBook",isfin);
                     Intent bookview = new Intent(getApplicationContext(), BookView.class);
                     startActivity(bookview);
                     editTextNewParagraph.getText().clear();
