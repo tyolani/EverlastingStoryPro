@@ -11,14 +11,13 @@
     <string name="bookView_spinner_text">Loading chapters... \n Please wait</string>
     <string name="bookView_dialog_isFinished">This chapter is finalized. \n Please select another one.</string>
 
-
-
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="contribution_submit">Are you sure you want to submit?</string>
-    <string name="contribution_addTextChapter">Add text to your chapter</string>
+    <string name="contribution_addTextChapter">Add title and text to your new chapter !</string>
     <string name="contribution_addTextParagraph">Add text to your new paragraph</string>
     <string name="contribution_final_contribution">Finish chapter?</string>
+    <string name="contribution_addTextTitle">"Write a title!"</string>
 
     <string name="overview_pages">Pages:</string>
     <string name="overview_table_of_contents">Table of Contents</string>

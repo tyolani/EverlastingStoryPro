@@ -27,6 +27,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.tyolani.everlastingstorypro.R.string.bookView_mockup_bookText;
 import static com.example.tyolani.everlastingstorypro.R.string.contribution_addTextChapter;
@@ -75,18 +77,24 @@ public class ContributionActivity extends AppCompatActivity {
             Toolbar menu = findViewById(R.id.menu_contribution_addChapter);
             setSupportActionBar(menu);
 
-            EditText editTextChapter = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
-            editTextChapter.setTypeface(editTextChapter.getTypeface(), Typeface.BOLD);
+
+            TextView textTextChapter = (TextView) findViewById(R.id.tv_contribution_add_chapter_title);
+            textTextChapter.setTypeface(textTextChapter.getTypeface(), Typeface.BOLD);
 
             if (chapterBeforeOrAfter.equals("after")) {
                 chapterPosition = chapterPosition + 1;
-                editTextChapter.append("Chapter" + (chapterPosition + 1) + ": ");
+                textTextChapter.append("Chapter" + (chapterPosition + 1) + ": ");
             } else {
-                editTextChapter.append("Chapter" + (chapterPosition + 1) + ": ");
+                textTextChapter.append("Chapter" + (chapterPosition + 1) + ": ");
             }
+            EditText editTextChapterTitle = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
+            //editTextChapterTitle.setTypeface(editTextChapterTitle.getTypeface(), Typeface.BOLD);
+            editTextChapterTitle.setText("Write a title!");
 
             EditText editTextContent = (EditText) findViewById(R.id.et_contribution_add_chapter_new_content);
             editTextContent.append(getString(contribution_addTextChapter));
+
+
 
         }else if(action.equals("addParagraph")) {
             final Chapter chapter = (Chapter) getIntent().getExtras().getSerializable("chapters");
@@ -200,12 +208,15 @@ public class ContributionActivity extends AppCompatActivity {
                 final Dialog dialog = new Dialog(ContributionActivity.this);
                 final EditText editTextNewParagraph = findViewById(R.id.et_contribution_add_paragraph_new_content);
                 final Chapter chapter = (Chapter) getIntent().getExtras().getSerializable("chapters");
+                final CheckBox cbFinalContribution = findViewById(R.id.cb_final_contribution);
+
+                final EditText editTextChapterContent = (EditText) findViewById(R.id.et_contribution_add_chapter_new_content);
+                final EditText editTextChapterTitle = (EditText) findViewById(R.id.et_contribution_add_chapter_title);
 
                 dialog.setContentView(R.layout.submit_dialog);
                 //get where the user is coming from (add paragraph, image or chapter)
                 if(action.equals("addParagraph")){
                     //find what the user added to the edit text
-                    cbFinalContribution = findViewById(R.id.cb_final_contribution);
 
                     // If statemetent which checks how many contributions there are in the current chapter, if less than 3 set the checkbox to not visible.
                     if(chapter.getNumberOfContributions() > 3){
@@ -214,7 +225,7 @@ public class ContributionActivity extends AppCompatActivity {
                         //cbFinalContribution.setVisibility(CheckBox.VISIBLE);
                     }
                     dialog.show();
-                }
+
 
                 Button noBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_no);
                 // if no btn is clicked
@@ -233,7 +244,7 @@ public class ContributionActivity extends AppCompatActivity {
                     public void onClick(View v) {
                     //// TODO: check if checkbox is checked
                     dialog.dismiss();
-                    final Contribution newContribution = new Contribution(String.valueOf(" \n"+editTextNewParagraph.getText())+" \n","author"+chapter.getNumberOfContributions()+"", false);
+                    final Contribution newContribution = new Contribution(String.valueOf(" \n \n"+editTextNewParagraph.getText())+" \n","author"+chapter.getNumberOfContributions()+"", false);
                     chapter.addContribution(newContribution);
                     activeBook.saveChapter(chapterPosition,chapter,"activeBook");
                     Intent bookview = new Intent(getApplicationContext(), BookView.class);
@@ -241,11 +252,67 @@ public class ContributionActivity extends AppCompatActivity {
                     editTextNewParagraph.getText().clear();
                     }
                 });
+                }else if (action.equals("addChapter")){
+                    dialog.show();
+
+                    Button noBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_no);
+                    // if no btn is clicked
+                    noBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Close dialog
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button yesBtn = (Button) dialog.findViewById(R.id.btn_submit_dialog_yes);
+                    // if yes btn is clicked
+                    yesBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Contribution newChapterContribution = new Contribution(String.valueOf(" \n \n"+editTextChapterContent.getText())+" \n","author", false);
+                            Chapter chap = new Chapter(newChapterContribution,String.valueOf(editTextChapterTitle.getText()));
+
+                            activeBook.getChapters().add(chapterPosition,chap);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                removeBook("activeBook");
+                                }
+                            }, 2000);
+
+                            Handler handler1 = new Handler();
+                            handler1.postDelayed(new Runnable() {
+                                public void run() {
+                                activeBook.saveBookToFirebase("activeBook");
+                                }
+                            }, 2000);
+
+                            Handler handler2 = new Handler();
+                            handler2.postDelayed(new Runnable() {
+                                public void run() {
+                                Intent bookview1 = new Intent(getApplicationContext(), BookView.class);
+                                startActivity(bookview1);
+                                }
+                            }, 2000);
+
+                        }
+                    });
+
+                }
                 return true;
             default:
                 // the user's action was not recognized
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    public void removeBook(String id) {
+        DatabaseReference db_node = FirebaseDatabase.getInstance().getReference().child("Book");
+        DatabaseReference book_idRef2 = db_node.child(id);
+        book_idRef2.setValue(null);
     }
 
 }
