@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +34,7 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
         Toolbar menu = findViewById(R.id.menu_bookView);
         setSupportActionBar(menu);
         getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         final Book activeBook = new Book("activeBook");
@@ -70,6 +70,10 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent2 = new Intent(this, OverviewActivity.class);
+                startActivity(intent2);
+            return true;
             case R.id.action_add_chapter:
 
                 // Create custom dialog object
@@ -156,6 +160,11 @@ public class BookView extends AppCompatActivity implements AbsListView.OnScrollL
     @Override
     public void onScrollStateChanged(AbsListView absListView, int i) {
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 }

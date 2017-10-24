@@ -43,6 +43,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:background="@null"
         android:contentDescription="@string/overview_chapter_row_lock_description"
         app:srcCompat="@drawable/ic_add" />
 

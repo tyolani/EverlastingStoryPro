@@ -34,8 +34,6 @@ public class HomeActivity extends AppCompatActivity {
         archivedBooks = new ArrayList<Book>();
         final Book book = (Book) getIntent().getExtras().getSerializable("book");
 
-        Log.w("BOOK", book.getGenre()+"");
-
         titleView = (TextView) findViewById(R.id.tv_home_bookTitle);
         genreView = (TextView) findViewById(R.id.tv_home_bookGenre);
         authorCount = (TextView) findViewById(R.id.tv_home_numberContributors);
@@ -51,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, OverviewActivity.class);
-                intent.putExtra("book", book);
                 startActivity(intent);
             }
         });

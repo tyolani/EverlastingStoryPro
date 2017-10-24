@@ -21,7 +21,7 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(1500);
+                    sleep(2000);
                     Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
                     intent.putExtra("book", activeBook);
                     startActivity(intent);

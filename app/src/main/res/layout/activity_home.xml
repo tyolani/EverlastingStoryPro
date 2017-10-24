@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context="com.example.tyolani.everlastingstorypro.HomeActivity">
 
+
     <ImageView
         android:id="@+id/iv_home_imageButton"
+        android:paddingTop="12dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="96dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/ImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iv_home_imageButton"
+        android:layout_alignTop="@id/iv_home_imageButton"
+        android:layout_alignRight="@id/iv_home_imageButton"
+        android:layout_alignBottom="@id/iv_home_imageButton"
+        android:gravity="center"
+        android:textSize="@dimen/size_book_content"
+        android:text="@string/home_tv_onImage"
+    />
 
     <TextView
         android:id="@+id/tv_home_bookTitle"
@@ -70,5 +85,34 @@
         android:layout_below="@id/iv_home_personImage"
         app:items_visible="three"
         />
+
+    <TextView
+        android:id="@+id/tv_home_archived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_tv_archived"
+        android:textSize="@dimen/size_title"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginBottom="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/tv_home_archived_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/home_tv_archived_info"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="@dimen/size_book_content"
+        android:textAlignment="center"
+        android:gravity="center"/>
 
 </RelativeLayout>
